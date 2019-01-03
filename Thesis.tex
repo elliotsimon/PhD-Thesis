@@ -1,0 +1,74 @@
+% !TeX document-id = {f557260d-bfe3-4cd2-ab60-c258fa899bb8}
+%---MAGIC COMMENTS---
+% !TEX program = pdflatex
+	%xelatex; pdflatex
+% !TEX root = Thesis.tex
+% !TeX TXS-program:bibliography = txs:///biber
+	% if this is not working, change directly in Options, Build; use bibtex
+	% bibtex; biber
+% !TeX spellcheck = <none>
+	%blabla !TeX encoding = utf8
+%------------------------------------------------------------------------------------
+\input{preamble/static}
+%---CLASS---
+%\documentclass[12pt,a4paper,twoside,showtrims,extrafontsizes]{memoir}
+\newcommand{\papersizeswitch}[3]{\ifnum\strcmp{\papersize}{#1}=0#2\else#3\fi}
+%\papersizeswitch{b5paper}{\def\classfontsize{10pt}}{\def\classfontsize{12pt}}
+%\documentclass[\classfontsize,\papersize,twoside,showtrims,extrafontsizes]{memoir}
+\documentclass[\classfontsize,\papersize,oneside,showtrims,extrafontsizes]{memoir}
+%------------------------------------------------------------------------------------
+%---PREAMBLE---%
+\RequirePackage[l2tabu,orthodox]{nag} % Old habits die hard
+
+\input{preamble/general}
+\input{preamble/fonts}
+\input{preamble/etc}
+\input{preamble/Elliot_packages}
+%------------------------------------------------------------------------------------
+%---BIBLIOGRAPHY---%
+\addbibresource{bibliography/Thesis.bib}
+%\addbibresource{bibliography/Bibliography.bib}
+%------------------------------------------------------------------------------------
+%---DOCUMENT---%
+\begin{document}
+    %-- prefront
+\prefrontmatter
+\include{prefrontmatter/titlepage}
+\cleartoevenpage
+\include{prefrontmatter/colophon}
+\clearforchapter
+    %-- front
+\frontmatter
+\include{frontmatter/Summary}
+\include{frontmatter/Dansk_Sammendrag}
+\include{frontmatter/Preface}
+\include{frontmatter/Outline}
+\include{frontmatter/Acknowledgements}
+\include{frontmatter/Quote}
+\include{frontmatter/Objectives}
+
+\clearforchapter
+    %-- TOContents
+\tableofcontents
+\clearforchapter
+    % Figures Tables, abbr., 
+%\mylistoftodos
+    %-- Chapters
+\mainmatter
+\include{chapters/Ch1_Intro}
+\include{chapters/Ch2_Paper1}
+\include{chapters/Ch3_Results}
+\include{chapters/Ch4_Discussion}
+\include{chapters/Ch5_Conclusion}
+%\blinddocument
+    %-- Appendix
+\appendix
+\include{appendices/Appendix_A}
+    %-- back
+\backmatter
+%\section*{References}
+\printbibliography[title=Bibliography for non-article texts]
+
+%\bibliographystyle{copernicus} 
+%\bibliography{bibliography/Thesis.bib}
+\end{document}

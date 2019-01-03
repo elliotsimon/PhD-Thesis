@@ -1,0 +1,50 @@
+%!TEX root = ../Thesis.tex 
+\thispagestyle{empty}             % No page numbers
+\calccentering{\unitlength}
+\begin{adjustwidth*}{\unitlength}{-\unitlength}
+    \begin{adjustwidth}{-0.5cm}{-0.5cm}
+        \sffamily
+%        \begin{flushright}
+%            \thesistypeabbr{} Thesis\\*[0cm]
+%%            \thesistype{}\\
+%        \end{flushright}
+%        \vspace*{\fill}
+%        \vspace{3cm}
+        \noindent
+        % \includegraphics[width=0.75\textwidth]{DTU-Compute-B-UK}\\*[0.5cm]
+%        \includegraphics[width=0.6\textwidth]{DTU-Wind-B-UK.jpg}%\\*[0.5cm]
+        \includegraphics[width=0.6\textwidth]{DTU-Wind-B-UK.jpg} \hfill
+        \begin{flushright}
+        	\thesistypeabbr{} Thesis\\*[0cm]
+        	%            \thesistype{}\\
+        \end{flushright}
+%        \vspace*{\fill}
+
+		\begin{vplace}[1.0]
+			\noindent
+			\newline \newline
+			\huge \thesistitle{}\\*[1.0cm]
+			\LARGE \thesissubtitle{}\\*[1.2cm]
+
+			\noindent
+		    \includegraphics[width=1.0\textwidth]{graphics/wind_farm_sunset.png} \vfill
+		\end{vplace}
+        
+        \noindent
+        \parbox[b]{0.5\linewidth}{%
+        	\noindent
+            \Large 
+            \thesisauthor{}\\*[0.8cm]
+            \large
+            \thesislocation{}, \the\year
+        }
+%	    \begin{tikzpicture}[remember picture,overlay]
+%	    	\node[anchor=south] at (current page.south) {I am \bound-bound...};
+%		    % You can see the border of the page node with this:
+%		    \draw[thick] (current page.south west) rectangle (current page.north east);
+%	    \end{tikzpicture}
+        \hfill\includegraphics[scale=0.7]{DTU-logo-CMYK}
+    \end{adjustwidth}
+\end{adjustwidth*}
+\normalfont
+\normalsize
