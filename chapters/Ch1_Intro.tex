@@ -39,11 +39,11 @@ Renewable energy doesn't come without its own set of challenges...
 \subsubsection{Case study of wind turbine power  variability}
 \label{sec:intro_intermittency_V52}
 
-To further explore wind variability and its impact on power systems, a summary investigation was conducted to characterize changes in electrical power output from a real world wind turbine. The data consists of high-resolution SCADA measurements from DTU's Vestas V52 research turbine at Ris{\o}. This model is one of the most commonly sold turbines worldwide and has a rated capacity of 850 kW. The sourced data spans from March 30 to May 4th, 2016 (35 days) during a calibration period when the turbine's control systems were under normal operation and no aerodynamic modifications were present. 
+To further explore wind variability and its impact on power systems, a summary investigation was conducted to characterize changes in electrical power output from a real world wind turbine. The data consists of high-resolution SCADA measurements from DTU's Vestas V52 research turbine at Ris{\o} (\cite{dtu_v52}). This model is one of the most commonly sold turbines worldwide and has a rated capacity of 850 kW. The sourced data spans from March 30 to May 4th, 2016 (35 days) during a calibration period when the turbine's control systems were under normal operation and no aerodynamic modifications were present. 
 \\\\
 Measurements of the turbine's active power signal were down-sampled from 35 Hz to 1-second averages, and normalized with respect to rated power (where a value of 100 represents the generator's nameplate capacity). Note that it is possible to have both values below zero (during start up when drawing power from the grid) as well as values above 100 on the short term.
 \\\\
-Statistics of absolute changes in the turbine's normalized power output within various time frames ranging from 1-second to 1-hour are presented in the following. Figure \ref{fig:act_pow_change_vioboxplot} presents a combined violin and boxplot across the selected time windows which illustrates statistical properties such as the shape and width of the distributions, quartile positions, median values, and spread of outliers.
+Statistics of absolute changes in the turbine's normalized power output within various time frames ranging from 1-second to 1-hour are presented in the following. Figure \ref{fig:act_pow_change_vioboxplot} presents a combined violin and boxplot across the selected time windows which illustrates statistical properties such as the shape and width of the distributions, quartile positions, median values, and spread of outliers. This is joined with Table \ref{tab:intro_v52_variability_statistics} describing summary statistics.
 
 \begin{figure}[htbp]
     \centering
@@ -52,16 +52,16 @@ Statistics of absolute changes in the turbine's normalized power output within v
     \label{fig:act_pow_change_vioboxplot}
 \end{figure}
 
-As anticipated, the variability grows with the length of the window. In all cases, the mean and median power output change is very close to zero and probability densities are symmetrical (normally distributed). On the very shortest timescales (1 and 5-seconds), the variations within the interquartile range (IQR) are small. However, from 30-seconds to 1-minute windows, there is a large 
-
-Summary statistics are further described in Table \ref{tab:intro_v52_variability_statistics}.
-
 \begin{table}
     \centering
     \caption{Table of statistics for V52 power output variability over selected time windows up to 1-hour}
     \input{tables/intro_v52_variability_statistics.tex}
     \label{tab:intro_v52_variability_statistics}
 \end{table}
+
+As expected, the variability grows with the length of the window. In all cases, the mean and median power output change is very close to zero and probability densities are symmetrical (normally distributed). On the very shortest timescales (1 and 5-seconds), the variations within the interquartile range (IQR) are small. However, from 30-seconds to 1-minute windows, the spread grows considerably. By the 5-minute case (300 s), the standard deviation approaches that of the longer timescales.
+\\\\
+This is further shown in Figure \ref{fig:norm_act_pow_error_dist}, where the distributions are stacked atop each other for comparison (note the logarithmic y-axis scaling). Tail bumps present for certain time windows near the peripheries indicate periods of automatic start up (right tail) when the cut-in wind speed is reached and shut down (left tail) when the cut-out wind speed is exceeded.
 
 \begin{figure}[htbp]
     \centering
@@ -70,6 +70,7 @@ Summary statistics are further described in Table \ref{tab:intro_v52_variability
     \label{fig:norm_act_pow_error_dist}
 \end{figure}
 
+This simplified investigation has considered a single wind turbine and not collective wind farm output or otherwise geographically distributed generation which will act to some degree as a smoothing filter. Having said that, the case study has demonstrated that minute-scale variability of wind power is not insignificant and attention should also be focused on this timescale alongside the more commonly focused periods (e.g. 1-hour).
 
 %--------------------------------------------------------------------------------
 \clearpage
