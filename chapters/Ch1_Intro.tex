@@ -13,15 +13,15 @@
 \label{sec:intro_history}
 
 Global energy systems are currently undergoing a revolution. The production of electricity for household and industrial use has, until the recent past, relied almost entirely on non-renewable fuel sources including coal and petroleum which are burned to run steam turbines. A number of compelling motives exist which are bringing change to the status quo.
-\\\\
+
 The first being the overwhelming scientific evidence of the impact of large scale releases of air pollutants into the environment. <add some data>. Particulates have been closely linked to lung and heart disorders. Carbon dioxide, a greenhouse gas, is also released through the combustion process and acts to both increase the Earth's surface temperature through radiative heat transfer, as well as acidify water bodies through the formation of carbonic acid. Other pollutants including sulfur oxides and nitrogen oxides contribute to smog and acid rain, and are similarly linked to acute heath effects. 
-\\\\
+
 Realizing the urgency of these environmental concerns, authorities across the world have begun to enact agreements to curb their emissions contributions. These pacts can range from city and regional planning regulations, to national legislation and international treaties. In conjunction with improvements in energy efficiency, large impacts can be made by the exchange and supplementation of low-carbon, renewable based generation including wind and solar. <add some data>
-\\\\
-Wind energy utilizes the kinetic energy of the wind to 
-\\\\
+
+Wind energy utilizes the kinetic energy of the wind to...
+
 Beyond commitments to avoiding the negatives associated with hydrocarbon based fuels, new opportunities have emerged with the maturation specifically of the wind energy industry. Rapid cost decreases have been demonstrated through experience, competition, and scaling which have brought the levelized-cost-of-energy (LCOE) of onshore wind power within reach and in many cases below that of traditional power plants without the need for subsidies.
-\\\\
+
 These developments have resulted in a large expansion of planned and installed projects worldwide. <add some data>. 
 
 
@@ -36,13 +36,13 @@ Renewable energy doesn't come without its own set of challenges...
 
 
 \clearpage
-\subsubsection{Case study of wind turbine power  variability}
+\subsubsection{Case study of wind turbine power variability}
 \label{sec:intro_intermittency_V52}
 
 To further explore wind variability and its impact on power systems, a summary investigation was conducted to characterize changes in electrical power output from a real world wind turbine. The data consists of high-resolution SCADA measurements from DTU's Vestas V52 research turbine at Ris{\o} (\cite{dtu_v52}). This model is one of the most commonly sold turbines worldwide and has a rated capacity of 850 kW. The sourced data spans from March 30 to May 4th, 2016 (35 days) during a calibration period when the turbine's control systems were under normal operation and no aerodynamic modifications were present. 
-\\\\
+
 Measurements of the turbine's active power signal were down-sampled from 35 Hz to 1-second averages, and normalized with respect to rated power (where a value of 100 represents the generator's nameplate capacity). Note that it is possible to have both values below zero (during start up when drawing power from the grid) as well as values above 100 on the short term.
-\\\\
+
 Statistics of absolute changes in the turbine's normalized power output within various time frames ranging from 1-second to 1-hour are presented in the following. Figure \ref{fig:act_pow_change_vioboxplot} presents a combined violin and boxplot across the selected time windows which illustrates statistical properties such as the shape and width of the distributions, quartile positions, median values, and spread of outliers. This is joined with Table \ref{tab:intro_v52_variability_statistics} describing summary statistics.
 
 \begin{figure}[htbp]
@@ -60,7 +60,7 @@ Statistics of absolute changes in the turbine's normalized power output within v
 \end{table}
 
 As expected, the variability grows with the length of the window. In all cases, the mean and median power output change is very close to zero and probability densities are symmetrical (normally distributed). On the very shortest timescales (1 and 5-seconds), the variations within the interquartile range (IQR) are small. However, from 30-seconds to 1-minute windows, the spread grows considerably. By the 5-minute case (300 s), the standard deviation approaches that of the longer timescales.
-\\\\
+
 This is further shown in Figure \ref{fig:norm_act_pow_error_dist}, where the distributions are stacked atop each other for comparison (note the logarithmic y-axis scaling). Tail bumps present for certain time windows near the peripheries indicate periods of automatic start up (right tail) when the cut-in wind speed is reached and shut down (left tail) when the cut-out wind speed is exceeded.
 
 \begin{figure}[htbp]
@@ -91,12 +91,18 @@ Placeholder
 
 
 \begin{comment}
-•	Errors in power forecast do not necessarily reflect impact. Overestimation and underproduction != underprediction and overproduction due to structure of balancing market.
+•	Errors in power forecast do not necessarily reflect impact. Overestimation and underproduction != under prediction and overproduction due to structure of balancing market.
 •	The need for spinning reserves. Frequency control/response mode. Droop speed control. Spinning reserve is extremely expensive for utilities. 
 •	https://en.wikipedia.org/wiki/Dynamic_demand_(electric_power)#The_need_for_spinning_reserve
 •	Cost of imbalance not only money but also CO2
 \end{comment}
 
+%--------------------------------------------------------------------------------
+\clearpage
+\subsubsection{Case study of wind power operation in a minute-scale energy market}
+\label{sec:intro_aus_power_study}
+
+Placeholder for Australian energy market case study
 
 %--------------------------------------------------------------------------------
 \clearpage
