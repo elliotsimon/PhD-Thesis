@@ -27,7 +27,7 @@ Placeholder
 Building upon the methods and results of the initial investigation, a full scale experiment was planned in conjunction with the New European Wind Atlas (NEWA) project. A primary objective of the campaign was to collect data for the purpose of developing a minute-scale wind forecasting system using upwind observations from the scanning lidars. The resulting {\O}sterild Balconies experiment provides cross-sectional scans of the horizontal wind by performing PPI scans at a height raised above the ground. This avoids the wind shear and height difference problems revealed in the initial investigation.
 
 \noindent
-An in-depth report of the research output is presented in the open access journal article Section \ref{sec:balcony_paper} and the Addendum \ref{sec:balcony_addendum1}.
+An in-depth report of the experiment and research results are presented in the open access journal article Section \ref{sec:balcony_paper} and Addendum \ref{sec:balcony_addendum1}.
 
 \noindent
 The data set and campaign metadata have been published on DTU's data repository (\cite{balcony_dataset}).
@@ -108,9 +108,17 @@ This result supports the use of upwind lidar data for detecting and forecasting 
 \label{sec:balcony_addendum2}
 
 \begin{itemize}
-    \item I did something good
-    \item I did something else good
-    \item And maybe possibly a third good thing?
+    \item Ideal measurement setup
+    \item Upwind space-time correlations investigated
+    \item Comparison of average advection behavior between theoretical (Taylor's frozen turbulence hypothesis) and empirical (lidar retrieved winds)
+    \item Simple wind retrieval method demonstrated which works well for wind speed but less favorably for wind direction
+    \item Lidar based minute-scale wind speed forecast model implemented which can operate in real-time
+    \item Rolling training and prediction approach used which assimilates the last observations to update model weights
+    \item RMSE errors reduced by XXXX compared to persistence of 10-minute moving average
+    \item Short gust event detected and tracked over 15-minute time period
+    
+    \item Weather event captured and tracked with a lead time of 2-hours which was not forecasted to occur by NWP models.
+    
 \end{itemize}
 
 %--------------------------------------------------------------------------------
