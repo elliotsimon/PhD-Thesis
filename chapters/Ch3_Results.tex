@@ -7,9 +7,90 @@
 \section{Initial investigation: WAFFLE experiment}
 \label{sec:waffle}
 
-Placeholder
+%The data set and campaign metadata have been published on DTU's data repository (\cite{waffle_dataset}).
 
-The data set and campaign metadata have been published on DTU's data repository (\cite{waffle_dataset}).
+As a first step towards assessing the feasibility of the project goals, a short measurement campaign was conducted to gather data for performing exploratory analysis and for investigating the core assumption of advection based flow transport.
+
+Work contained in this chapter is expanded upon a poster presentation given at the 3rd International Conference on Future Technologies in Wind Energy (WindTech 2017 in Boulder, Colorado).
+
+A 3-week field experiment named 'WAFFLE' took place between March 23rd and April 6th, 2017 at DTU-Ris{\o} campus. A single long-range scanning lidar (Leosphere WindCube 400S) was deployed at ground level in the field of DTU's research wind turbines. 
+
+The lidar was set to perform scans facing west to measure the dominant wind inflow to the test site. A PPI (sector scan) configuration was used with a sampling rate of 23 seconds, maximum range of 9.6 km, and scanning elevation of 3 degrees (see depiction in Figure \ref{fig:waffle_experiment_setup}).
+
+The dataset has been made publicly available in DTU's data repository (cite{waffle_dataset}) and a subset was also utilized in an applied data workshop with data and code examples available in \cite{simon_eawe_workshop}.
+
+\begin{figure}[htbp]
+    \centering
+        \includegraphics[width=0.465\textwidth]{graphics/results/waffle/waffle_field_photo.png}        \includegraphics[width=0.43\textwidth]{graphics/results/waffle/experiment_overview_crop.png}
+    \caption{Left: Photo of scanning lidar taken during experiment. \\Right: Aerial view of measurement setup}
+    \label{fig:waffle_experiment_setup}
+\end{figure}
+
+The elevation angle was necessary in order for the beam to clear the vegetation and other infrastructure present at the site. This however, resulted in a height change as a function of range at a relationship of 52 meters per kilometer. During the data analysis stage, it was determined that this elevation gradient caused a significant issue, both due to the probe volume averaging being affected by wind shear and the lack of correlation of winds at higher heights- the furthest range gate (9.6 km) being at 500 m AGL while the first (288 m) corresponding to 15 m AGL. 
+
+A rudimentary but accepted method to normalize the height differences was applied using the wind profile power law. This is a simple engineering model based on empirical relationships between wind speeds at two heights. During periods of neutral atmospheric conditions, this approach has been well demonstrated to perform similarly to the logarithmic wind profile law above the surface layer and up to the height of the boundary layer <add ref>.
+
+\begin{equation}
+    \centering
+        u = u _ { r } \left( \frac { z } { z _ { r } } \right) ^ { \alpha }
+    \label{eq:wind_power_law}
+\end{equation}
+
+Where $u$ and $z$ are the target wind speed and height, $u_r$ and $z_r$ are the reference wind speed and height, and $\alpha$ is an empirically derived coefficient, often given as 1/7 $\approx$ 0.143 for neutral atmospheric stability.
+
+A 2-day period with westerly winds and neutral/near-neutral stability was chosen and two range gates (RG) were selected which were spaced reasonably far apart but within a range of heights relevant for wind energy purposes. Measurements at the 1200 m RG distance (62 m AGL) and the 1800 m RG distance (93 m AGL) were reconstructed into horizontal wind vector components using the IVAP (integrating velocity azimuth process) algorithm from \cite{liang_ivap_2007} and presented in Equations \ref{eq:ivap_equation_u} and \ref{eq:ivap_equation_v}. From there, the scalar horizontal wind speeds were obtained (Equations \ref{eq:wsp} and \ref{eq:wdir}).
+
+\begin{equation}
+    u = \frac{(\sum_{\theta_{start}}^{\theta_{stop}} (rs*\cos \theta ) * \sum_{\theta_{start}}^{\theta_{stop}} (\sin^2 \theta ) )- (\sum_{\theta_{start}}^{\theta_{stop}} (rs*\sin \theta ) * \sum_{\theta_{start}}^{\theta_{stop}} (\cos \theta  * \sin \theta ))}
+    {((\sum_{\theta_{start}}^{\theta_{stop}} \cos^2 \theta )*\sum_{\theta_{start}}^{\theta_{stop}} \sin^2 \theta  )) - (\sum_{\theta_{start}}^{\theta_{stop}} (\cos \theta  * \sin \theta ))^2)}
+    \label{eq:ivap_equation_u}
+\end{equation}
+
+\begin{equation}
+    v = \frac{(\sum_{\theta_{start}}^{\theta_{stop}} (rs*\sin \theta ) * \sum_{\theta_{start}}^{\theta_{stop}} (\cos^2 \theta ) )- (\sum_{\theta_{start}}^{\theta_{stop}} (rs*\cos \theta ) * \sum_{\theta_{start}}^{\theta_{stop}} (\cos \theta  * \sin \theta ))}
+    {((\sum_{\theta_{start}}^{\theta_{stop}} \cos^2 \theta )*\sum_{\theta_{start}}^{\theta_{stop}} \sin^2 \theta )) - (\sum_{\theta_{start}}^{\theta_{stop}} (\cos \theta  * \sin \theta ))^2)}
+    \label{eq:ivap_equation_v}
+\end{equation}
+
+\begin{equation}
+    V_h = \sqrt{u^2 + v^2}
+    \label{eq:wsp}
+\end{equation}
+
+\begin{equation}
+    dir = atan2\: (v,u)
+    \label{eq:wdir}
+\end{equation}
+
+Measurements spanning April 7-8 (7226 23-second samples or approximately 46 hours) were used for the following investigation. The methods utilize reconstructed lidar data at two positions which have been height corrected to 93 m AGL relative to the lidar’s scan head: The further upwind position (1800 m RG), and the closer downwind position (1200 m RG). The downwind position is treated as a reference, and three forecasting methods have been performed.
+
+The lead time for the forecasts was set at 70-seconds. This is derived from the theoretical mean advection time by considering the average wind speed (8.55 m/s) during the period together with the horizontal travel distance between the two points (600 m). 
+
+The first method is a persistence benchmark, which simply assumes that the wind speed will remain unchanged over the forecast horizon from the last available measurement. For this, only the reference signal is used (i.e. not the upwind measurements).
+
+The second method, called ‘scan-shifting’, uses measurements at the upwind position (with no additional modelling) from the current time to predict wind speeds for the downwind position at a given time in the future (current time + forecast length). As the scan rate of the lidar is fixed at 23-seconds, a shift of 3 scans (69-seconds) was used to match the chosen forecast length.
+
+As an initial sanity check of the scan-shift method, upwind measurements were shifted by a range of scan-times and cross-correlated with the reference values to determine if a peak is present at the number of scans corresponding to our mean advection rate and chosen forecast length. Figure \ref{fig:waffle_1200_shifted1800_corrplot} shows this result, where a clear correlation peak can be seen at the number of scan-times corresponding with the theoretical position.
+
+\begin{figure}[htbp]
+    \centering
+        \includegraphics[width=0.7\textwidth]{graphics/results/waffle/waffle_1200_shifted1800_corrplot.png}
+    \caption{Cross-correlation function for a range of scan-shifts between the upwind and downwind measurements. A peak exists at the expected location corresponding to the mean advection time.}
+    \label{fig:waffle_1200_shifted1800_corrplot}
+\end{figure}
+
+The final method constitutes building a regression model which takes the upwind measurements as an input to predict the downwind wind speed at the same forecast length. As the number of samples is small, the support vector regression (SVR) method from <addref> with radial basis function (RBF) kernel was used. This was implemented using the scikit-learn library using default settings and without parameter tuning. The model was trained on 40\% of the available data and once fitted, was used to make predictions using the same input data as the scan-shift approach.
+
+An overall results comparison of the three methods is presented in Figure \ref{fig:waffle_forecast_all_results}. The two lidar approaches have improved significantly over the persistence method, with a reduction in root-mean-squared-errors (RMSE) of 20\%. Persistence performs well at very low wind speeds (below 5 m/s), but displays larger amounts of scatter exceeding this. There does not appear to be a marked difference in performance between the scan-shift and SVR methods.
+
+\begin{figure}[htbp]
+    \centering
+        \includegraphics[width=1.0\textwidth]{graphics/results/waffle/waffle_forecast_all_results.png}
+    \caption{Comparison of three approaches with line y=x also shown. General linear model fit parameters and error metrics annotated}
+    \label{fig:waffle_forecast_all_results}
+\end{figure}
+
+
 
 %--------------------------------------------------------------------------------
 \clearpage
