@@ -148,7 +148,7 @@ The data set and campaign metadata have been published on DTU's data repository 
 \section{Minute-Scale Wind Speed Forecasting Using Scanning Lidar Inflow Measurements}
 \label{sec:balcony_paper}
 
-%\includepdf[pages=-]{papers/Balcony_paper_WESD.pdf}
+\includepdf[pages=-]{papers/Balcony_paper_WESD.pdf}
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -217,18 +217,18 @@ This result supports the use of upwind lidar data for detecting and forecasting 
 \clearpage
 \section{Addendum 2: Key results and lessons learned}
 \label{sec:balcony_addendum2}
+\bigskip
 
 \begin{itemize}
-    \item Ideal measurement setup
-    \item Upwind space-time correlations investigated
-    \item Comparison of average advection behavior between theoretical (Taylor's frozen turbulence hypothesis) and empirical (lidar retrieved winds)
-    \item Simple wind retrieval method demonstrated which works well for wind speed but less favorably for wind direction
-    \item Lidar based minute-scale wind speed forecast model implemented which can operate in real-time
-    \item Rolling training and prediction approach used which assimilates the last observations to update model weights
-    \item RMSE errors reduced by XXXX compared to persistence of 10-minute moving average
-    \item Short gust event detected and tracked over 15-minute time period
-    
-    \item Weather event captured and tracked with a lead time of 2-hours which was not forecasted to occur by NWP models.
+    \item An extensive field campaign was conducted using an improved lidar configuration for measuring long-range inflow of horizontal winds.
+    \item A simple wind retrieval method was demonstrated which works well for wind speed but less favorably for wind direction
+    \item Space-time correlations between a met-mast and upwind lidar positions were investigated, which indicate a sharp discernible peak up to 2-3 km distance upstream.
+    \item The average advection behavior was compared between theoretical (Taylor's frozen turbulence hypothesis) and empirical (lidar retrieved winds) which shows agreement at the same scales as the space-time correlation result.
+    \item A direct multi-step wind speed forecast model was implemented which emulates real-time scanning lidar inputs to predict 1-60 minute ahead wind speeds at the met-mast position.
+    \item A rolling (walk-forward) training and prediction approach was used which assimilates the last observations to update model weights used in subsequent predictions.
+    \item Root-mean-square wind speed forecast errors were reduced by 21\% (1-min ahead), 10.9\% (5-mins ahead), 9.2\% (10-mins ahead), 7.1\% (30-mins ahead), and 6.2\% (60-mins ahead) compared to a 10-minute moving average of persistence.
+    \item Gust events were detected upstream, which were able to be tracked up to 15-minutes before arriving to the met-mast position.
+    \item A weather event (frontal boundary pass-through) was captured and tracked with a lead time of 2-hours which was not predicted by numerical weather models.
     
 \end{itemize}
 
@@ -240,6 +240,10 @@ This result supports the use of upwind lidar data for detecting and forecasting 
 Placeholder
 
 The data set and campaign metadata have been published on DTU's data repository (\cite{lascar_dataset}).
+
+Wanted to forecast wind direction as well
+Wanted to perform very fast scans with lower angular resolution and lower max distance to track spatial features in 2D, rather than apply a reconstruction/retrieval model to get 1D time series at all RG.
+
 
 %--------------------------------------------------------------------------------
 \clearpage
