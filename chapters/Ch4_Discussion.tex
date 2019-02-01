@@ -6,15 +6,24 @@
 \clearpage
 \section{What remote sensing can be used for in this context}
 \label{sec:discussion_rs}
+\bigskip
 
-Placeholder
+Two approaches to remote sensing based forecasting have been demonstrated in this thesis work which indicate the usefulness of such a system.
 
-\begin{comment}
-•	Predicting wind speed and direction minutes-ahead
-•	Tracking coherent structures, e.g. gusts, weather fronts
-add in applications..
-\end{comment}
+The first is predicting the wind speed and direction minutes-ahead using upwind radial speed measurements together with a propagation model. The second is using the upwind observations to detect and track coherent structures advecting towards the site. These can include events such as weather fronts and wind ramps.
 
+Various applications of operational forecasts on these timescales (i.e 0-60 minutes) have been identified.
+
+\begin{itemize}
+    \item Wind turbine and wind farm control including: feedforward control, model predictive control, yaw control, induction control, and wake steering.
+    \item Trading in electricity markets with lead times below one-hour. Examples include Australia, the EPEX Spot markets for national trades within Germany, France, Austria, Switzerland, Belgium and the Netherlands.
+    \item Power grid balancing and frequency control by TSOs and possibly future reserve and ancillary service markets.
+    \item Asset management by wind power owners and operators.
+\end{itemize}
+
+Site measurements from remote sensing devices offer high-resolution information about local conditions which dominate the minute-scale wind variability. As the wind is fundamentally chaotic, it is arguable that numerical weather prediction (NWP) models on their own will continue to struggle considerably in the lasting future to correctly resolve these microscale features. Boundary conditions could originate from such remote sensing devices like Doppler lidar or radar, but present computational resources do not enable the model results to be available fast enough for real time operation.
+
+In contrast, all forecast methods demonstrated in this thesis are capable of real time use. However it remains to be answered if the increased skill in reducing forecast errors can be capitalized upon by the wind industry. The lidar instrumentation used in the field experiments must be purchased, installed and maintained by skilled technical staff to provide accurate and reliable measurement data. These additional capital and operational expenses may not translate into a net benefit when compared with statistical time series modelling approaches such as ARIMA. That being said, as remote sensing device manufacturers mature and compete to improve product cost, and offshore wind farms approach and exceed the gigawatt scale, the business case for installing and operating such a system may become feasible.
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -22,6 +31,8 @@ add in applications..
 \label{sec:discussion_practical}
 
 Placeholder
+
+. This has been achieved in the WAFFLE experiment (Section \ref{sec:waffle}) in a simplified manner by time shifting the IVAP reconstructed upwind wind speed signal by the time of flight between the upwind and downwind reference positions. In the Balcony experiment (\ref{sec:balcony_paper}), wind direction aligned wind speeds were used in a 
 
 \begin{comment}
 
