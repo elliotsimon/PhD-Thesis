@@ -260,5 +260,17 @@ The data set and campaign metadata have been published on DTU's data repository 
 \clearpage
 \section{Addendum: Key results and lessons learned}
 \label{sec:lascar_addendum}
+\bigskip
 
-Placeholder
+\begin{itemize}
+    \item A field campaign was conducted which produced rapid high resolution inflow PPI scans and reference DBS measurements at the Ris{\o} test site.
+    \item 2-Dimensional cross-correlations between pairs of scan images show the advection of coherent spatial features up to 3 km downwind and up to 5-minutes ahead.
+    \item An appropriate machine learning algorithm (ConvLSTM) was identified which is able to learn spatiotemporal patterns from sequences of images.
+    \item The ConvLSTM units were used to build an artificial neural network (ANN) which uses upwind lidar PPI scans to predict wind vectors at the position of the profiling lidar with a multi-step output up to 5-minutes ahead.
+    \item Without model tuning, the ANN-lidar approach outperformed two of the three benchmarks up to 4-minutes ahead (persistence and integrated AR model).
+    \item The ANN-lidar model scored the lowest RMSE against all benchmarks during the first two forecast periods (13 s and 26 s ahead).
+    \item At the 1-minute ahead timestep, the ANN-lidar model outperformed persistence with 18\% and 21\% lower RMSE, and the integrated AR model by 12\% and 11\% for wind speed and wind direction respectively.
+    \item ARIMA time series modelling has demonstrated superior skill from the third forecast period onwards.
+    \item The ANN-lidar model is computationally capable of running in real time for advisory or automated decision input.
+    \item This approach should be further refined and investigated to determine if the increased complexity and cost provides added value for industrial use.
+\end{itemize}
