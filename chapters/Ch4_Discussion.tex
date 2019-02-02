@@ -18,7 +18,7 @@ Various applications of operational forecasts on these timescales (i.e 0-60 minu
     \item Wind turbine and wind farm control including: feedforward control, model predictive control, yaw control, induction control, and wake steering.
     \item Trading in electricity markets with lead times below one-hour. Examples include Australia, the EPEX Spot markets for national trades within Germany, France, Austria, Switzerland, Belgium and the Netherlands.
     \item Power grid balancing and frequency control by TSOs and possibly future reserve and ancillary service markets.
-    \item Asset management by wind power owners and operators.
+    \item Asset management by wind power owners and operators, including storage (e.g. battery) optimization.
 \end{itemize}
 
 Site measurements from remote sensing devices offer high-resolution information about local conditions which dominate the minute-scale wind variability. As the wind is fundamentally chaotic, it is arguable that numerical weather prediction (NWP) models on their own will continue to struggle considerably in the lasting future to correctly resolve these microscale features. Boundary conditions could originate from such remote sensing devices like Doppler lidar or radar, but present computational resources do not enable the model results to be available fast enough for real time operation.
@@ -30,20 +30,17 @@ In contrast, all forecast methods demonstrated in this thesis are capable of rea
 \section{Recommended practical implementations}
 \label{sec:discussion_practical}
 
-Placeholder
+In this section, a number of practical suggestions are made towards an operational realization of a lidar based forecasting system.
 
-. This has been achieved in the WAFFLE experiment (Section \ref{sec:waffle}) in a simplified manner by time shifting the IVAP reconstructed upwind wind speed signal by the time of flight between the upwind and downwind reference positions. In the Balcony experiment (\ref{sec:balcony_paper}), wind direction aligned wind speeds were used in a 
+Current commercially available pulsed scanning lidar systems are suitable tools, but are designed with excessive capabilities relative to the design requirements of propagation based and extreme event detection forecasting methods. Significant application specific simplifications can be made which would increase the robustness and reliability of the instruments as well as decrease their cost and maintenance demands. Fixed beam formulations similar to existing nacelle lidar models could be adapted for this purpose by increasing the power of the laser source and fibre amplifiers to achieve measurement ranges equal to the high-power scanning variants. 
 
-\begin{comment}
+A proposed framework for operating at a wind farm would be to install a simplified turbine mounted device within the first row, or several devices placed at the corners of the turbine array to provide spatial coverage for all wind directions. Mounting the device at hub height will ensure that the horizontal wind measurements are not affected by wind shear or vertical wind motion. Similarly to traditional nacelle lidars, beam blockage by the turbine blades and tilting from trust loading of the rotor and structure are necessary considerations. An alternative setup would be to deploy a traditional ground based or tower mounted scanning lidar (onshore) or atop a substation platform in offshore environments. In this configuration, the scanning lidar would perform either continuous 360\degree \ PPI scans, or would perform an initial calibrating sector scan to determine the general wind direction, and then launch repeating scans centered in that direction. 
 
-•	Strongest EDFA and laser source in order to get best data availability
-•	Smart filtering steps to avoid data loss
-•	Hybrid solution which can fall back to persistence if something goes wrong
-•	Identify highly local events which can provide the most benefit to forecast
-•	Use offshore, mounted on substation, etc.
-•	Measure at zero elevation angle
+When processing measurement data, it is recommended to utilize advanced filtering techniques such as the dynamic method (\cite{beck_dynamic_2017}) instead of a strict threshold filter to increase the effective measurement range. In cases where the lidar device does not provide sufficient data quality, a fall back approach should be included which relies of the persistence method within the first 30-seconds, and ARIMA time series modelling after that horizon.
 
-\end{comment}
+In regards to forecast model formulation, two separate approaches are reviewed. The first being event detection, either for extreme events or for anticipated situations predicted by numerical weather prediction (NWP) models. This method utilizes real time measurements together with a static set of rules (i.e. model) to determine if an event is detected within close proximity to the site. Examples include monitoring the upstream wind speed or direction gradient to detect approaching weather regimes changes, or other highly localized meteorological phenomena. This is formulated as a classification problem and as such does not require any past information being time-independent by design. This method can however be optionally combined with a spatiotemporal advection model to predict the arrival timing of the event.
+
+The second approach is based either on a simple time of flight shifting of upwind measurements, or on regression models which employ real time spatiotemporal correlations to predict wind vectors minutes-ahead. Due to the high temporal autocorrelation of the wind signals and the short stability of atmospheric conditions, model weights in the latter approach should be tuned as close to real time as possible. This can be done be incrementally re-fitting the existing model with new observations as they become available, or by training a new model on a rolling window of past observations or on the entire dataset at each timestep. It is also recommended to generate forecasts in a multi-output fashion (i.e. a vector forecast spanning a range of lead times) to ensure that all space time correlations can be extrapolated into the forecast.
 
 
 %--------------------------------------------------------------------------------
