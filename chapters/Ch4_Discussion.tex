@@ -16,14 +16,15 @@ Various applications of operational forecasts on these timescales (i.e 0-60 minu
 
 \begin{itemize}
     \item Wind turbine and wind farm control including: feedforward control, model predictive control, yaw control, induction control, and wake steering.
-    \item Trading in electricity markets with lead times below one-hour. Examples include Australia, the EPEX Spot markets for national trades within Germany, France, Austria, Switzerland, Belgium and the Netherlands.
+    \item Trading in electricity markets with lead times below one-hour. Present day examples include Australia, and the EPEX Spot markets for national trades within Germany, France, Austria, Switzerland, Belgium and the Netherlands.
     \item Power grid balancing and frequency control by TSOs and possibly future reserve and ancillary service markets.
-    \item Asset management by wind power owners and operators, including storage (e.g. battery) optimization.
+    \item Asset management by wind power owners and operators, including portfolio optimization and storage (e.g. battery) control.
 \end{itemize}
 
 Site measurements from remote sensing devices offer high-resolution information about local conditions which dominate the minute-scale wind variability. As the wind is fundamentally chaotic, it is arguable that numerical weather prediction (NWP) models on their own will continue to struggle considerably in the lasting future to correctly resolve these microscale features. Boundary conditions could originate from such remote sensing devices like Doppler lidar or radar, but present computational resources do not enable the model results to be available fast enough for real time operation.
 
-In contrast, all forecast methods demonstrated in this thesis are capable of real time use. However it remains to be answered if the increased skill in reducing forecast errors can be capitalized upon by the wind industry. The lidar instrumentation used in the field experiments must be purchased, installed and maintained by skilled technical staff to provide accurate and reliable measurement data. These additional capital and operational expenses may not translate into a net benefit when compared with statistical time series modelling approaches such as ARIMA. That being said, as remote sensing device manufacturers mature and compete to improve product cost, and offshore wind farms approach and exceed the gigawatt scale, the business case for installing and operating such a system may become feasible.
+In contrast, all forecast methods demonstrated in this body of work are capable of real time use. However it remains to be answered if the increased skill in reducing forecast errors can be capitalized upon by the wind power industry. The lidar instrumentation used in the field experiments must be purchased, installed and maintained by skilled technical staff to provide accurate and reliable measurement data. These additional capital and operational expenses may not translate into a net benefit when compared with statistical time series modelling approaches such as ARIMA. That being said, as remote sensing device manufacturers mature and compete to improve product cost, and large wind farms approach and exceed the gigawatt scale of installed capacity, the business case for installing and operating such a system may become feasible.
+
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -36,7 +37,7 @@ Current commercially available pulsed scanning lidar systems are suitable tools,
 
 A proposed framework for operating at a wind farm would be to install a simplified turbine mounted device within the first row, or several devices placed at the corners of the turbine array to provide spatial coverage for all wind directions. Mounting the device at hub height will ensure that the horizontal wind measurements are not affected by wind shear or vertical wind motion. Similarly to traditional nacelle lidars, beam blockage by the turbine blades and tilting from trust loading of the rotor and structure are necessary considerations. An alternative setup would be to deploy a traditional ground based or tower mounted scanning lidar (onshore) or atop a substation platform in offshore environments. In this configuration, the scanning lidar would perform either continuous 360\degree \ PPI scans, or would perform an initial calibrating sector scan to determine the general wind direction, and then launch repeating scans centered in that direction. 
 
-When processing measurement data, it is recommended to utilize advanced filtering techniques such as the dynamic method (\cite{beck_dynamic_2017}) instead of a strict threshold filter to increase the effective measurement range. In cases where the lidar device does not provide sufficient data quality, a fall back approach should be included which relies of the persistence method within the first 30-seconds, and ARIMA time series modelling after that horizon.
+When processing measurement data, it is recommended to utilize advanced filtering techniques such as the dynamic method (\cite{beck_dynamic_2017}) instead of a strict threshold filter to increase the effective measurement range. In cases where the lidar device does not provide sufficient data quality, a fall back approach should be included which instead relies of the persistence method within the first 30-seconds, and ARIMA time series modelling after that horizon.
 
 In regards to forecast model formulation, two separate approaches are reviewed. The first being event detection, either for extreme events or for anticipated situations predicted by numerical weather prediction (NWP) models. This method utilizes real time measurements together with a static set of rules (i.e. model) to determine if an event is detected within close proximity to the site. Examples include monitoring the upstream wind speed or direction gradient to detect approaching weather regimes changes, or other highly localized meteorological phenomena. This is formulated as a classification problem and as such does not require any past information being time-independent by design. This method can however be optionally combined with a spatiotemporal advection model to predict the arrival timing of the event.
 
@@ -48,13 +49,19 @@ The second approach is based either on a simple time of flight shifting of upwin
 \section{Opportunities for extension of work}
 \label{sec:discussion_extension}
 
-Placeholder
+The limited duration of this project has imposed limits on the scope of the research and field work carried out. For future work on the subject, a number of possible continuations are suggested.
+
+All forecasts in this body of work have been deterministic (single point predictions). Probabilistic forecasts are emerging as the new standard as they also contribute information about the range and distribution of uncertainties around the predicted values. This is useful for modelling sensitivities and in decision making, e.g. applying optimal bidding strategies to minimize risk when participating in the auction markets (\cite{pinson_trading_2007}). Outputs from multiple deterministic models can be transformed into prediction intervals by methods including quantile regression averaging (\cite{nowotarski_computing_2015}), support vector quantile regression (\cite{he_short-term_2017}), or approaches based on logistic regression.
+
+As discussed in Section \ref{sec:discussion_practical}, a suggestion for future field measurements is to define an adaptive scan trajectory which tracks the general wind direction, instead of repeating a fixed pattern which may not be focused upwind of the site. Other continuations of the measurement 
+
 
 \begin{comment}
-•	Probabilistic output
-•	Explore uncertainties
+hybrid nwp model
 •	Use longer range systems
 •	Combine data set with wind farm SCADA for control possibilities
 Track the wind with lidar scan, fit on the fly
-Volumetric wind field tracking
+Volumetric wind field tracking or rhi
+tune ANN model
+couple with power curve like in waffle
 \end{comment}
