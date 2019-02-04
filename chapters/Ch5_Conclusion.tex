@@ -18,30 +18,17 @@ To gather data for testing and evaluating the potential for remote sensing based
 
 Two classes of remote sensing based forecasts have been identified. The first being classification based approaches which can be used to detect extreme events and warn of incidents expected to occur but at an unknown time. An example of such an event is the weather front passage with 180\degree \ direction change captured during the Balconies experiment at {\O}sterild (Section \ref{sec:balcony_addendum1}). The boundary was first detected 2-hours before arrival to the site, and its propagation was tracked over the same period. Furthermore, the event was not contained in the NWP (WRF) forecasts yet would have a substantial impact on both the energy production and loads of the turbines. This type of forward information is invaluable as statistical models based on historical data have no skill in correctly predicting these types of events.
 
-The second category represents regression based approaches which give a deterministic or probabilistic forecast output minutes-ahead. 
+The second category represents regression based approaches which give a deterministic or probabilistic forecast output minutes-ahead. This has been the main area of focus in this body of work. The first technique, applied on the WAFFLE dataset, is a basic approach which shifts the IVAP reconstructed upstream wind speed signal by the time-of-flight distance to the downstream reference position. This method (at the 1-minute horizon) has achieved a 20\% and 30\% reduction in RMSE over persistence for wind speed and wind power respectively. 
 
+The following study, applied on the {\O}sterild Balconies dataset, uses a wind direction aligned retrieval method to obtain upwind wind speeds which are fit to a linear model using stochastic gradient descent regression (SGDR). The model is incrementally fit following each newly available measurement, and a range of 1 to 60-minute ahead wind speeds are predicted. This method has achieved similar improvements over (10-minute average) persistence on the 1-minute scale (21\%), 10.9\% at the 5-minute scale, 9.2\% at 10-minutes, 7.1\% at 30-minutes, and 6.2\% at 60-minutes. 
 
+The final and most complex technique was applied on the LASCAR dataset. The 2-D radial speeds were input into a convolutional-recurrent neural network (ConvLSTM) which exploits spatiotemporal patterns from sequences of lidar scan images to forecast wind vectors in a multi-output fashion up to 5-minutes ahead. At the 1-minute ahead timestep, performance is similar to the first two lidar based techniques: 18\% and 21\% RMSE improvement over persistence for wind speed and wind direction respectively. However, the ARIMA time series model benchmark demonstrates higher skill for most timesteps, leading to questions of the added value and justification of the resource requirements needed to deploy and operate the instrument.
 
-
-
-
-
-
+Overall, remote sensing instruments including long-range pulsed Doppler lidars present a promising resource for generating minute-scale wind power forecasts. They provide spatial and temporal information with a high level of detail about impending conditions and can detect changes in the wind resource before arrival to the site which can be used in advanced control and trading algorithms which will lead to the more efficient utilization of wind power and lower cost for electricity.
 
 
 \begin{comment}
-Design criteria
 The time horizon of forecast models on these scales must be doable within this, to give automated or advisory...
-
-Methods:
-Measurement setup
-WAFFLE
-Balcony
-LASCAR
-
-Benchmark all
-Challenges and opportunities
-
 -----------------------------------------------------
 ts modeling vs lidar
 \end{comment}
