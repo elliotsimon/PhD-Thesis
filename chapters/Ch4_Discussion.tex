@@ -53,15 +53,14 @@ The limited duration of this project has imposed limits on the scope of the rese
 
 All forecasts in this body of work have been deterministic (single point predictions). Probabilistic forecasts are emerging as the new standard as they also contribute information about the range and distribution of uncertainties around the predicted values. This is useful for modelling sensitivities and in decision making, e.g. applying optimal bidding strategies to minimize risk when participating in the auction markets (\cite{pinson_trading_2007}). Outputs from multiple deterministic models can be transformed into prediction intervals by methods including quantile regression averaging (\cite{nowotarski_computing_2015}), support vector quantile regression (\cite{he_short-term_2017}), or approaches based on logistic regression.
 
-As discussed in Section \ref{sec:discussion_practical}, a suggestion for future field measurements is to define an adaptive scan trajectory which tracks the general wind direction, instead of repeating a fixed pattern which may not be focused upwind of the site. Other continuations of the measurement 
+As discussed in Section \ref{sec:discussion_practical}, a suggestion for future field measurements is to define an adaptive scan trajectory which tracks the general wind direction, instead of repeating a fixed pattern which may not be focused upwind of the site. Other continuations of the measurement efforts include trials with large-scale Doppler lidars such as the Lockheed Martin WindTracer or Mitsubishi Diabrezza A which can measure at distances up to 30 km for increased look-ahead time. It is also suggested to explore beyond flat cross sections of the horizontal wind, by including e.g. vertical cross sections from RHI scans, or even 3-D volumetric trajectories to account for wind shear and the vertical structure of atmospheric motion.
+
+State of the art wind farm models (e.g. PossPOW from DTU) have been recently applied for second-scale forecasting, using SCADA signals from within the wind farm to predict power production at downstream turbine rows. A coupling between one of the approaches outlined in this thesis which predicts for the first row, together with a wind farm model for the remaining turbines presents a natural combination which should be explored.
 
 
 \begin{comment}
 hybrid nwp model
-•	Use longer range systems
-•	Combine data set with wind farm SCADA for control possibilities
-Track the wind with lidar scan, fit on the fly
-Volumetric wind field tracking or rhi
+Combine data set with wind farm SCADA for control possibilities
 tune ANN model
 couple with power curve like in waffle
 \end{comment}
