@@ -2,4 +2,19 @@
 \chapter{Summary}
 \label{sec:summary}
 
-Placeholder
+
+A key obstacle to the large scale adoption of wind power is the high variability of energy production caused by weather systems and the turbulent atmosphere. Forecast errors contribute a significant source of uncertainty for power system planning and operation when large shares of renewables constitute the supply mix. To address these issues, horizons for economic dispatch and financial settlement are being shortened from hourly to minute-scale operations across a growing number of markets.
+
+Three key uses of wind forecasts on the minute scale include: Trading in intrahour wholesale electricity markets, supporting and managing grid balance actions, and collective wind farm control.
+
+Wind and power forecasts on these very-short timescales are typically obtained by inferring patterns from past data (time series modelling) or by assuming unchanging conditions from the latest available measurements (persistence). Yet, these methods inevitably fail to perform under changing conditions where accurate forecasts are most needed. %the largest detrimental impacts to power grid balance.
+
+Remote sensing instruments such as long-range pulsed Doppler lidars are able to measure the wind several kilometers away with high spatial and temporal resolution. By directing the lidar to measure upstream (inflow), preview information about wind patterns and structures which advect to some degree towards the site is gathered in real time. This information can be used together with models to generate site specific wind and power forecasts, either through the classification of anomalous events or in a regression approach which produces deterministic or probabilistic predictions.
+
+To explore these possibilities, a series of experimental field campaigns have been conducted during the PhD project which build upon each other to provide high quality reference datasets used for model formulation and testing. Scanning lidar observations have been used to examine space-time correlations as a function of distance upstream. The results indicate a strong relationship particularly within the first 3 km upwind of the reference position which corresponds to an optimal forecasting window of up to 5-minutes ahead. Gains beyond this lead time have also been shown, which can be attributed to the effectively reduced forecast horizon as a function of distance ahead.
+
+Three forecast methods have been implemented which range in complexity from simple time-of-flight shifting of reconstructed horizontal wind speeds, to a linear propagation model which uses wind direction aligned wind speeds, to a machine learning computer vision approach which uses 2-D lidar scans in a convolutional LSTM neural network. In each case, the lidar based prediction models are able to fulfill the constraints of real time use, and are evaluated against common benchmarks and reflected upon.
+
+Specific incidents captured during the experiments including wind ramps and the arrival of a weather front have also been examined to determine the ability of the lidar to detect and track their arrival to the site. 
+
+Overall conclusions of the PhD project are that forward looking lidar observations are useful in this context, particularly for detecting large scale events where the precise timing and location is not reliably captured by numerical weather prediction (NWP) models. Endeavors to produce multi-step time series forecasts and evaluate them statistically have been successful, especially compared with the persistence method. However the added value of these approaches remains ambiguous. Time series modelling techniques like ARIMA generally perform well, and the complexity and expense of installing and maintaining additional instrumentation may not prove to be cost effective. If these modest gains can be linked to significant economic impacts and users are able to capitalize on marginal improvements in the forecast accuracy, then an operational realization following the guidelines laid out in this thesis should be considered.
