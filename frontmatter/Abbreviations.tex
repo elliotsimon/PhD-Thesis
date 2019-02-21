@@ -1,0 +1,108 @@
+\chapter{Table of Abbreviations}
+\label{sec:abbreviations}
+
+
+\makeatletter
+\newcommand{\tocfill}{\cleaders\hbox{$\m@th \mkern\@dotsep mu . \mkern\@dotsep mu$}\hfill}
+\makeatother
+\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \tocfill}}
+\newenvironment{abbreviations}{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}%
+    \setlength{\labelwidth}{3cm}\setlength{\leftmargin}{\labelwidth+\labelsep}%
+        \setlength{\itemsep}{0pt}}}{\end{list}}
+\noindent
+%Here they are!
+\bigskip
+\begin{abbreviations}
+\item[$\psi$] Wind direction
+\item[$\theta$] Azimuth angle
+\item[$\phi$] Elevation angle
+
+\item[ACF] Autocorrelation function
+\item[AC] Alternating current
+\item[AGL] Above ground level
+\item[AMSL] Above mean sea level
+\item[AR] Autoregressive
+\item[ARIMA] Autoregressive integrated moving average
+\item[ARMA] Autoregressive moving average
+\item[ANN] Artificial neural network
+
+\item[BA] Balancing authority
+\item[BRP] Balance responsible party
+
+\item[ConvLSTM] Convolutional long short-term memory
+\item[CNN] Convolutional neural network
+\item[CNR] Carrier to noise ratio
+
+\item[DKK] Danish krone
+\item[DBS] Doppler beam swing
+\item[DTU] Technical University of Denmark
+
+\item[EPEX] European Power Exchange
+\item[EUR] Euro
+
+\item[FC] Fully connected 
+\item[FIT] Feed in tariff 
+
+\item[GPU] Graphics processing unit
+\item[GWEC] Global Wind Energy Council
+
+\item[Hz] Hertz
+
+\item[ISO] Independent system operator
+\item[IEA] International Energy Agency
+\item[IEC] International Electrotechnical Commission
+\item[IRENA] International Renewable Energy Agency
+\item[IQR] Interquartile range
+\item[IVAP] Integrating velocity azimuth process
+
+\item[LCOE] Levelized cost of energy
+\item[LSTM] Long short-term memory
+\item[LOS] Line of sight
+
+\item[MAE] Mean absolute error
+
+\item[NWP] Numerical weather prediction
+\item[NEWA] New European Wind Atlas
+
+\item[OECD] Organization for Economic Cooperation and Development
+\item[OLS] Ordinary least squares 
+
+\item[PSD] Power spectral density
+\item[PPI] Plan position indicator
+\item[PACF] Partial autocorrelation function
+\item[PPA] Power purchase agreement
+
+\item[RMSE] Root mean square error
+\item[RNN] Recurrent neural network
+\item[RHI] Range height indicator
+\item[RG] Range gate
+\item[RBF] Radial basis function
+\item[$R^2$] Coefficient of determination
+
+\item[SGDR] Stochastic gradient descent regression
+\item[SVR] Support vector regression
+\item[SDVR] Single Doppler velocity retrieval
+\item[SCADA] Supervisory control and data acquisition
+\item[s] Seconds
+
+\item[TSO] Transmission system operator
+
+\item[USD] United States dollar
+\item[$U$] Scalar wind speed
+\item[$u_r$] Radial wind speed
+\item[$u$] Zonal (Easterly) horizontal wind component
+\item[UTC] Coordinated universal time
+
+\item[VAD] Velocity azimuth display
+\item[VAR] Vector autoregressive
+\item[$v$] Meridional (Northerly) horizontal wind component
+
+\item[WRF] Weather research and forecasting
+\item[W] Watts
+\item[$w$] Vertical wind component
+
+\item[$z$] Height
+
+%\item[] 
+%\item[] 
+\end{abbreviations} 
