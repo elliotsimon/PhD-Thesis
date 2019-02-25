@@ -18,7 +18,7 @@ The next segment (Sections \ref{sec:balcony_intro}, \ref{sec:balcony_paper}, \re
 
 The main results from the two comprehensive experiments are presented in manuscript form, which are intended for publication. The former is currently under review at the journal \textit{Wind Energy Science}, while the latter is in draft form targeted to \textit{Atmospheric Measurement Techniques}.
 
-All work contained herein has been performed by the PhD student under counsel of the supervision team and exchange hosts. Cooperation with technical staff during the experimental periods has been attributed in the relevant sections and in the published datasets. 
+All work contained herein (research and writing) has been performed by the PhD student under counsel of the supervision team and exchange hosts. Cooperation with technical staff during the experimental periods has been attributed in the relevant sections and in the published datasets. 
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -26,27 +26,32 @@ All work contained herein has been performed by the PhD student under counsel of
 \label{sec:waffle}
 
 %The data set and campaign metadata have been published on DTU's data repository (\cite{waffle_dataset}).
+\medskip
+\subsection*{Introduction}
 
 As a first step towards assessing the feasibility of the project goals, a short measurement campaign was conducted to gather data for performing exploratory analysis and for investigating the core assumption of advection based flow transport.
 
-Work contained in this chapter is expanded upon a poster presentation given at the 3rd International Conference on Future Technologies in Wind Energy (WindTech 2017 in Boulder, Colorado).
+Work contained in this section is an expanded version of a poster presentation given at the 3rd International Conference on Future Technologies in Wind Energy (WindTech 2017 in Boulder, Colorado).
 
 A 3-week field experiment named 'WAFFLE' took place between March 23rd and April 6th, 2017 at DTU-Ris{\o} campus. A single long-range scanning lidar (Leosphere WindCube 400S) was deployed at ground level in the field of DTU's research wind turbines. 
 
-The lidar was set to perform scans facing west to measure the dominant wind inflow to the test site. A PPI (sector scan) configuration was used with a sampling rate of 23 seconds, maximum range of 9.6 km, and scanning elevation of 3 degrees (see depiction in Figure \ref{fig:waffle_experiment_setup}).
-
 The dataset has been made publicly available in DTU's data repository (\cite{waffle_dataset}) and a subset was also utilized in an applied workshop with data and code examples available in \cite{simon_eawe_workshop}.
+
+The lidar was set to perform scans facing west to measure the dominant wind inflow to the test site. A PPI (sector scan) configuration was used with a sampling rate of 23 seconds, maximum range of 9.6 km, and scanning elevation of 3 degrees (see depiction in Figure \ref{fig:waffle_experiment_setup}).
 
 \begin{figure}[htbp]
     \centering
         \includegraphics[width=0.465\textwidth]{graphics/results/waffle/waffle_field_photo.png}        \includegraphics[width=0.43\textwidth]{graphics/results/waffle/experiment_overview_crop.png}
-    \caption{Left: Photo of scanning lidar taken during experiment. Right: Aerial view of measurement setup}
+    \caption{Left: Photo of scanning lidar taken during experiment. Right: Aerial view of measurement setup. The radius of the arc is 9.6 km}
     \label{fig:waffle_experiment_setup}
 \end{figure}
 
 The elevation angle was necessary in order for the beam to clear the vegetation and other infrastructure present at the site. This however, resulted in a height change as a function of range at a relationship of 52 meters per kilometer. During the data analysis stage, it was determined that this elevation gradient caused a significant issue, both due to the probe volume averaging being affected by wind shear and the lack of correlation of winds at higher heights- the furthest range gate (9.6 km) being at 500 m AGL while the first (288 m) corresponding to 15 m AGL. 
 
-A rudimentary but accepted method to normalize the height differences was applied using the wind profile power law. This is a simple engineering model based on empirical relationships between wind speeds at two heights. During periods of neutral atmospheric conditions, this approach has been well demonstrated to perform similarly to the logarithmic wind profile law above the surface layer and up to the height of the boundary layer <add ref>.
+\medskip
+\subsection*{Methods}
+
+A rudimentary but accepted method to normalize the height differences was applied using the wind profile power law. This is a simple engineering model based on empirical relationships between wind speeds at two heights. During periods of neutral atmospheric conditions, this approach has been well demonstrated to perform similarly to the logarithmic wind profile law above the surface layer and up to the height of the boundary layer. This approach is also favoured because it requires no information about the friction velocity or surface roughness which would normally originate from met-mast observations.
 
 \begin{equation}
     \centering
@@ -54,7 +59,7 @@ A rudimentary but accepted method to normalize the height differences was applie
     \label{eq:wind_power_law}
 \end{equation}
 
-Where $u$ and $z$ are the target wind speed and height, $u_r$ and $z_r$ are the reference wind speed and height, and $\alpha$ is an empirically derived coefficient, often given as 1/7 $\approx$ 0.143 for neutral atmospheric stability.
+Where $u$ and $z$ are the target wind speed and height, $u_r$ and $z_r$ are the reference wind speed and height, and $\alpha$ is an empirically derived coefficient, often given as 1/7 $\approx$ 0.143 for neutral atmospheric stability over open land. A sensitivity analysis of the $\alpha$ value has not been performed. \cite{peterson_use_1978} has however investigated this at the Ris{\o} site, and concluded that the 1/7 value provides conservative but reasonable results and that the total mean wind power density estimate is not particularly sensitive to the choice of $\alpha$. 
 
 A 2-day period with westerly winds and neutral/near-neutral stability was chosen and two range gates (RG) were selected which were spaced reasonably far apart but within a range of heights relevant for wind energy purposes. Measurements at the 1200 m RG distance (62 m AGL) and the 1800 m RG distance (93 m AGL) were reconstructed into horizontal wind vector components using the IVAP (integrating velocity azimuth process) algorithm from \cite{liang_ivap_2007} which are given in Equations \ref{eq:ivap_equation_u} and \ref{eq:ivap_equation_v}. From there, the scalar horizontal wind speeds and directions were obtained (Equations \ref{eq:wsp} and \ref{eq:wdir}).
 
@@ -99,7 +104,7 @@ A demonstration of the scan-shift method is shown in Figure \ref{fig:waffle_scan
     \label{fig:waffle_scan_shift_example}
 \end{figure}
 
-As an further sanity check of the scan-shift method, upwind measurements were shifted by a range of scan-times and cross-correlated with the reference values to determine if a peak is present at the number of scans corresponding to our mean advection rate and chosen forecast length. Figure \ref{fig:waffle_1200_shifted1800_corrplot} shows this result, where a clear correlation peak can be seen at the number of scan-times corresponding with the theoretical position.
+As a further sanity check of the scan-shift method, upwind measurements were shifted by a range of scan-times and cross-correlated with the reference values to determine if a peak is present at the number of scans corresponding to our mean advection rate and chosen forecast length. Figure \ref{fig:waffle_1200_shifted1800_corrplot} shows this result, where a clear correlation peak can be seen at the number of scan-times corresponding with the theoretical position.
 
 \begin{figure}[htbp]
     \centering
@@ -108,7 +113,7 @@ As an further sanity check of the scan-shift method, upwind measurements were sh
     \label{fig:waffle_1200_shifted1800_corrplot}
 \end{figure}
 
-The final method constitutes building a regression model which takes the upwind measurements as an input to predict the downwind wind speed at the same forecast length. As the number of samples is small, the support vector regression (SVR) method from \cite{drucker_svr_1996} with radial basis function (RBF) kernel was used. This was implemented using the scikit-learn library using default settings and without parameter tuning (\cite{sklearn_svr_docs}). The model was trained on 40\% of the available data and once fitted, was used to make predictions over the entire dataset, as to produce the same sample size as the other methods.
+The final method constitutes building a regression model which takes the upwind measurements as an input to predict the downwind wind speed at the same forecast length. As the number of samples is small, the support vector regression (SVR) method from \cite{drucker_svr_1996} with radial basis function (RBF) kernel was used. This was implemented using the scikit-learn library using default settings and without parameter tuning (\cite{sklearn_svr_docs}). The model was trained on 40\% of the available data. After fitting to the in-sample data, the model was used to make predictions for the remaining 60\% of the dataset.  The model was also applied to the entire dataset. This approach is not endorsed as it evaluates the model on data which it has already been optimized on. Since accuracy metrics were similar in both the train and test datasets, it was done anyway to allow for comparison with the other methods by generating the same number of samples.
 
 In addition to evaluating forecast performance on wind speeds, a transformation to wind power was made using a power curve model (Figure \ref{fig:waffle_power_curve}). This illustrates a generic turbine model where units are expressed such that a value of one represents the wind turbine generator's rated power. The nonlinear power curve perverts forecast error impacts at different wind speeds, so it is pertinent to also inspect errors in the power domain.
 
@@ -119,17 +124,23 @@ In addition to evaluating forecast performance on wind speeds, a transformation 
     \label{fig:waffle_power_curve}
 \end{figure}
 
-An overall results comparison of the three methods is presented in Figure \ref{fig:waffle_forecast_all_results}, both for wind speed and wind power. The two lidar approaches have improved significantly over the persistence method, with a reduction in root-mean-squared-errors (RMSE) of 20\% for wind speed and 30\% for wind power. Persistence performs well at very low wind speeds (below 5 m/s), but displays larger amounts of scatter exceeding this. There does not appear to be a marked difference in performance between the scan-shift and SVR methods.
+\medskip
+\subsection*{Results}
+
+An overall results comparison of the three methods is presented in Figure \ref{fig:waffle_forecast_all_results}, both for wind speed and wind power. The two lidar approaches have improved significantly over the persistence method, with a reduction in root-mean-squared-errors (RMSE) of 20\% for wind speed and 30\% for wind power. Persistence performs well at very low wind speeds (below 5 m/s), but displays larger amounts of scatter at higher speeds. A possible explanation for this is that lower wind speeds are often associated with the presence of a stable boundary layer which is composed of lower levels of ambient turbulence. There does not appear to be a marked difference in performance between the scan-shift and SVR methods.
 
 \begin{figure}[htbp]
     \centering
         \includegraphics[width=1.0\textwidth]{graphics/results/waffle/waffle_forecast_all_results.png}
         \includegraphics[width=1.0\textwidth]{graphics/results/waffle/waffle_forecast_all_power_results.png}
-    \caption{Comparison of three approaches with line y=x also shown. General linear model fit parameters and error metrics annotated}
+    \caption{Comparison of three approaches with line y=x also shown. The top row presents the wind speed results, while the bottom row is in the normalized wind power domain. The left panes are persistence, middle panes are the lidar scan-shift method, and right panes are the lidar SVR approach. General linear model fit parameters and error metrics between the forecast and reference values are annotated}
     \label{fig:waffle_forecast_all_results}
 \end{figure}
 
-In summary, two novel forecasting methods have been applied using upwind lidar measurements to generate 1-minute ahead wind speed and power forecasts which significantly outperform the persistence benchmarks. The promising results achieved promote further development of the concept. Adjustments to the measurement setup are strongly recommended in future field campaigns, in order to avoid issues arising from sampling horizontal winds across a sloped plane.
+\medskip
+\subsection*{Conclusions}
+
+In summary, two novel forecasting methods have been applied using upwind lidar measurements to generate 1-minute (actually 69 s) ahead wind speed and power forecasts which significantly outperform the persistence benchmarks. The promising results achieved promote further development of the concept. Adjustments to the measurement setup are strongly recommended in future field campaigns, in order to avoid issues arising from sampling horizontal winds across a sloped plane. For this reason, the extended measurement range of the 400S scanning lidar was not capitalized upon in this particular study.
 
 %--------------------------------------------------------------------------------
 \clearpage
