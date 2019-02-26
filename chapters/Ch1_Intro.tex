@@ -46,8 +46,8 @@ Winds originate from differential heating of the Earth's surface and are transpo
 
 Wind variability is defined as the fluctuations in energy content of the wind. These variations occur across a wide range of temporal and spatial scales. Contributions can include diurnal, seasonal, and interannual patterns, and physical processes including: gravity waves, cold fronts, storms, cellular convection, convective rolls, low level jets, and sea breezes (\cite{vincent_forecasting_2017}). Combinations of these synoptic-, meso- and micro-scale influences lead to a high degree of intermittency in the wind, as shown in Figure \ref{fig:wind_speed_power_ts} using 1-second measurements.
 
-Analysis of the power spectral density of wind measurements demonstrates the distribution of these energies by frequency. 
-An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high-frequency meteorological and turbine data. The 
+Analysis of the power spectral density (PSD) demonstrates the distribution of energies which contribute to the signal variability by frequency. 
+An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high-frequency meteorological and turbine data. The results are obtained using Welch's method (\cite{welch_use_1967}) with Hamming windowing to reduce noise in the spectra.
 
 \begin{figure}[htbp]
     \centering
@@ -58,8 +58,8 @@ An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high
 
 \begin{figure}[htbp]
     \centering
-        \includegraphics[width=1.0\textwidth]{graphics/intro/variability/wind_speed_power_psd.png}
-    \caption{Power spectral density (PSD) comparison between wind speed and wind power from DTU's V52 research turbine}
+        \includegraphics[width=1.0\textwidth]{graphics/intro/variability/wind_speed_power_psd.pdf}
+    \caption{Power spectral density (PSD) of wind speed (left) and wind power (right) from DTU's V52 research turbine}
     \label{fig:wind_speed_power_psd}
 \end{figure}
 
