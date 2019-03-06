@@ -129,29 +129,23 @@ Utility scale wind power installations consist of multi-turbine arrangements kno
 
 Modern wind turbines are designed with control systems which act to optimize their performance from an individual perspective. However, all together this greedy approach does not always result in the best coordination of the wind farm as a whole. The field of wind farm control aims to collectively optimize the power and loads of the entire wind farm in a collaborative manner by orchestrating control over each turbine's set-points. The overall objectives being to either maximize total active power or provide power control by following a reference signal, and to minimize fatigue loads (\cite{knudsen_survey_2015}). The two main mechanisms for dynamic wind farm control are induction control and wake steering.
 
-Axial induction control reduces the velocity deficit of the downstream wake leading to larger amounts of recoverable energy available to downstream turbines. A wind turbine's power coefficient at maximum operating point is much less sensitive to changes in pitch angle than its thrust coefficient (\cite{annoni_analysis_2016}). Exploiting this relationship allows for small decreases in the upstream turbine's production to be more than made up for by increased production at the downstream turbines. This is accomplished by slightly pitching the rotor outwards (towards feathered position) and adjusting the generator torque which results in a decrease in the power and thrust coefficients. Normally this is performed by reducing the active power of the turbine (downrating), instead of manually interfacing with the turbine's pitch and torque set-points. 
-% Some numbers about benefits?
+Axial induction control reduces the velocity deficit of the downstream wake leading to larger amounts of recoverable energy available to downstream turbines. A wind turbine's power coefficient at maximum operating point is much less sensitive to changes in pitch angle than its thrust coefficient (\cite{annoni_analysis_2016}). Exploiting this relationship allows for small decreases in the upstream turbine's production to be more than made up for by increased production at the downstream turbines. This is accomplished by slightly pitching the rotor outwards (towards feathered position) and adjusting the generator torque which results in a decrease in the power and thrust coefficients and a reduction in the tip speed ratio. Normally this is performed by reducing the active power of the turbine (downrating), instead of manually interfacing with the turbine's pitch and torque set-points. \cite{gebraad_maximum_2015} establishes a 1.36\% improvement in annual energy production (AEP) using dynamic induction control simulations at the Princess Amalia Wind Farm in the Netherlands.
 
-Wake steering is the intentional misalignment of an upstream turbine's rotor in order to redirect (steer) the wake away from downstream turbines. Normally the rotor will be oriented perpendicular
+Wake steering is the intentional misalignment of an upstream turbine's rotor in order to redirect (steer) the wake away from downstream turbines. During normal operation, the turbine will orient its rotor perpendicularly to the wind direction. Applying wake redirection causes the turbine's yaw motor to re-orient itself to an angle relative to the wind direction (Fig. \ref{fig:wake_steering}). This causes the wake to deflect away from downwind turbines, leading to a net increase in energy production for the overall wind farm. Positive yaw misalignment angles are normally used, as this results in a positive tilt angle which also directs the wake downwards. Simulations have indicated the potential for power gains using this approach while also avoiding significant load repercussions. The gains in AEP are on the order of 5\% through the reduction of wake losses (\cite{knudsen_survey_2015}, \cite{gebraad_maximization_2017}). The concept has been successfully demonstrated in a recent field trial (\cite{fleming_field_2017}) which confirms the simulation estimates.
 
-This is achieved by 
+\begin{figure}[htbp]
+    \centering
+        \includegraphics[width=0.5\textwidth]{graphics/intro/wake_steering.png}
+    \caption{Comparison of the horizontal wake during normal operation (top panel) and under wake steering control (bottom panel, 30\degree \ yaw misalignment). The actual wake center-line is indicated in black, with the linear downstream reference in pink. Simulation using NREL's SOWFA toolbox in OpenFOAM. Source: (\cite{fleming_wakesteering_2014})}
+    \label{fig:wake_steering}
+\end{figure}
 
-
-Better gains than induction control
-
-
-
-
-
+Wind farm control 
 
 
 \begin{comment}
-Dynamic
-through management of..
-clustering of turbines into rows
-
-Wake steering
 Why do we need minute scale forecasting for this?
+the algorithm needs an estimate of the effective incoming wind speed, and an estimate of the delays related to the wind field travelling from one turbine to the next.
 Wind turbine control timescales are not very relevant.
 This is not really forecasting, more a direct application of Taylor on the second scale.
 \end{comment}
