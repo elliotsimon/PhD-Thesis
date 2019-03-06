@@ -20,13 +20,9 @@ Realizing the urgency of these environmental concerns, authorities across the wo
 
 Beyond commitments to avoiding the negatives associated with hydrocarbon based fuels, new opportunities have emerged with the maturation specifically of the wind energy industry. Rapid cost decreases have been demonstrated through experience, competition, and scaling which have brought the levelized-cost-of-energy (LCOE) of onshore wind power within reach and in many areas below that of traditional power plants without the need for subsidies. The IRENA renewable cost database reveals a 2017 average global LCOE for onshore wind at 60 and offshore wind at 140 USD/MWh, with projections for further decreases in the coming years (\cite{IRENA_2018}). The 2019 tender for Saudi Arabia's first installation, the 400 MW Dumat Al Jandal wind farm, resulted in a record power purchase agreement (PPA) of 21.3 USD/MWh (\cite{masdar_edf_2019}).
 
-\begin{comment}
-    An additional compelling reason to...
-    <geopolitical motivations from o and g from the middle east, Russia, etc.
-    security of supply for self-sufficiency>
-\end{comment}
+A final rationale for embracing renewable energy development in many areas is the opportunity for leveraging locally available resources instead of relying on imported fuels from territories which are often rife with geopolitical conflicts. Ensuring security of supply for the local population through greater self-sufficiency can lead to more a balanced hegemony in regional and global politics.
 
-While wind power only supplies about 4\% of global electricity demand at present (14\% in the European Union), the aforementioned developments have resulted in a large and rapid expansion of planned and installed projects worldwide. Figure \ref{fig:wind_power_cum} presents a timeline of cumulative globally installed wind power, with the 2017 aggregate totalling over 539 GW. The growth rate is projected to remain near 10\%, year on year (\cite{gwec_global_2017}).
+While wind power only supplies about 4\% of global electricity demand at present (14\% in the European Union and 44\% in Denmark), the aforementioned developments have resulted in a large and rapid expansion of planned and installed projects worldwide. Figure \ref{fig:wind_power_cum} presents a timeline of cumulative globally installed wind power, with the 2017 aggregate totalling over 539 GW. The growth rate is projected to remain near 10\%, year on year (\cite{gwec_global_2017}) with many large projects already approved and financed for construction in the coming years.
 
 \begin{figure}[htbp]
     \centering
@@ -46,8 +42,7 @@ Winds originate from differential heating of the Earth's surface and are transpo
 
 Wind variability is defined as the fluctuations in energy content of the wind. These variations occur across a wide range of temporal and spatial scales. Contributions can include diurnal, seasonal, and interannual patterns, and physical processes including: gravity waves, cold fronts, storms, cellular convection, convective rolls, low level jets, and sea breezes (\cite{vincent_forecasting_2017}). Combinations of these synoptic-, meso- and micro-scale influences lead to a high degree of intermittency in the wind, as shown in Figure \ref{fig:wind_speed_power_ts} using 1-second measurements.
 
-Analysis of the power spectral density (PSD) demonstrates the distribution of energies which contribute to the signal variability by frequency. 
-An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high-frequency meteorological and turbine data. The results are obtained using Welch's method (\cite{welch_use_1967}) with Hamming windowing to reduce noise in the spectra.
+Analysis of the power spectral density (PSD) demonstrates the distribution of energies which contribute to the signal variability by frequency. An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high-frequency meteorological and turbine data. The results are obtained using Welch's method (\cite{welch_use_1967}) with Hamming windowing to reduce noise in the spectra.
 
 \begin{figure}[htbp]
     \centering
@@ -130,16 +125,36 @@ This simplified investigation has considered a single wind turbine and not colle
 \subsection{Wind farm control}
 \label{sec:intro_control}
 
+Utility scale wind power installations consist of multi-turbine arrangements known as wind farms. The layout is normally characterized by rows of turbines which affect each other through complex aerodynamic interactions. The most notable being wake induced power losses (through a reduction in the extractable energy of the wind by upstream turbines) and fatigue loading (by increased turbulence originating from the air-blade interaction of upstream turbines).
+
+Modern wind turbines are designed with control systems which act to optimize their performance from an individual perspective. However, all together this greedy approach does not always result in the best coordination of the wind farm as a whole. The field of wind farm control aims to collectively optimize the power and loads of the entire wind farm in a collaborative manner by orchestrating control over each turbine's set-points. The overall objectives being to either maximize total active power or provide power control by following a reference signal, and to minimize fatigue loads (\cite{knudsen_survey_2015}). The two main mechanisms for dynamic wind farm control are induction control and wake steering.
+
+Axial induction control reduces the velocity deficit of the downstream wake leading to larger amounts of recoverable energy available to downstream turbines. A wind turbine's power coefficient at maximum operating point is much less sensitive to changes in pitch angle than its thrust coefficient (\cite{annoni_analysis_2016}). Exploiting this relationship allows for small decreases in the upstream turbine's production to be more than made up for by increased production at the downstream turbines. This is accomplished by slightly pitching the rotor outwards (towards feathered position) and adjusting the generator torque which results in a decrease in the power and thrust coefficients. Normally this is performed by reducing the active power of the turbine (downrating), instead of manually interfacing with the turbine's pitch and torque set-points. 
+% Some numbers about benefits?
+
+Wake steering is the intentional misalignment of an upstream turbine's rotor in order to redirect (steer) the wake away from downstream turbines. Normally the rotor will be oriented perpendicular
+
+This is achieved by 
+
+
+Better gains than induction control
+
+
+
+
+
+
+
+\begin{comment}
+Dynamic
+through management of..
+clustering of turbines into rows
+
+Wake steering
+Why do we need minute scale forecasting for this?
 Wind turbine control timescales are not very relevant.
 This is not really forecasting, more a direct application of Taylor on the second scale.
-
-TODO:
-\begin{itemize}
-\color{red}
-    \item Farm level control intro
-    \item Induction control
-    \item Wake steering
-\end{itemize}
+\end{comment}
 
 %--------------------------------------------------------------------------------
 \clearpage
