@@ -149,6 +149,10 @@ The field of individual turbine control (i.e. feed-forward and model predictive 
 \subsection{Forecasting for wind energy}
 \label{sec:intro_forecasting}
 
+The evolution of wind power together with advancements in computing and an improved understanding of atmospheric dynamics has established forecasting as a central element of operational research. An entire sub-industry is dedicated to developing and providing forecasting services to end users.
+
+Wind prediction is conducted on a wide range of time scales, with lead times spanning from a few milliseconds up to one week or more. Prediction intervals can be described by a few broad categories, each with their own approaches and applications. Table \ref{tab:forecast_overview_table} outlines the common forecast horizons relevant to wind energy and typical methods applied within them. Broad overviews of the field are also presented in \cite{costa_review_2008}, \cite{giebel_state---art_2011} and \cite{soman_review_2010}.
+
 \begin{table}
     \centering
     \caption{Overview of forecast intervals of interest for wind energy purposes}
@@ -158,11 +162,21 @@ The field of individual turbine control (i.e. feed-forward and model predictive 
     \label{tab:forecast_overview_table}
 \end{table}
 
+Forecasting techniques can be categorized into two fundamental classes- physical and statistical approaches. Here general introductions are given for both.
 
+Physical approaches such as numerical weather prediction (NWP) are based on parameterizations of the atmosphere, where coarse input data (global or synoptic scale) is combined with mathematical modelling of atmospheric properties such as air, soil and sea temperature, pressure, land cover and surface obstacles to provide a local site forecast at varying temporal and spatial resolutions. Optionally, through data assimilation the model states can be iteratively adjusted using real-time observations to improve the simulation and correct for biases. These systems generally run on large supercomputers and require significant time and computational power to generate their forecasts. Further, they have not sufficiently demonstrated their ability to predict local microscale events that are of greatest relevance for real-time wind farm control. Therefore they are not considered appropriate in the context of minute-scale wind forecasting as they are ill-suited to be used operationally these time scales with today’s technology.
+
+Statistical approaches 
+
+
+Time-series meteorological data consists of individual samples which are highly correlated, non-independent and naturally ordered in time. This contrasts to cross-sectional analyses where samples are independent of each other and can be shuffled to improve model performance through tuning and cross-validation.
+
+While a large volume of research work has been published on the short and long-term lead times, the prevailing lack of data access to high-frequency measurements along with a general incompatibility of grid and market support for implementing decision actions on minute timescales has led to a distinct gap in knowledge for forecasting within this category.
+
+%------------------------------------------------------------------------------
 TODO:
 \begin{itemize}
 \color{red}
-    \item Forecasting intro
     \item Methods (statistical, physical)
     \item Evaluating forecasts
 \end{itemize}
@@ -174,14 +188,18 @@ TODO:
 \label{sec:intro_power_markets}
 
 TODO:
-\begin{itemize}
-\color{red}
-    \item Intro to grid design and constraints
-    \item Physical balancing
-    \item Markets introduction
-    \item Economic dispatch
-    \item Intrahour market trading
-\end{itemize}
+\begin{comment}
+Intro to grid design and constraints
+Physical balancing
+Markets introduction
+Economic dispatch
+Intrahour market trading
+Errors in power forecast do not necessarily reflect impact. Overestimation and underproduction != underprediction and overproduction due to structure of balancing market.
+The need for spinning reserves. Frequency control/response mode. Droop speed control. Spinning reserve is extremely expensive for utilities. 
+https://en.wikipedia.org/wiki/Dynamic_demand_(electric_power)#The_need_for_spinning_reserve
+Cost of imbalance not only money but also CO2
+
+\end{comment}
 
 
 
