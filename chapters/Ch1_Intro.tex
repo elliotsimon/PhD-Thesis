@@ -142,7 +142,7 @@ Wake steering is the intentional misalignment of an upstream turbine's rotor in 
 
 Wind farm control algorithms require estimates of the incoming wind speed and direction. These inputs are combined with a delay factor to account for the wind field advection between turbine rows. The forecasts are applicable on the minute scale for preemptive optimization by the wind farm controller and for the individual turbines to adjust their configurations accordingly. Induction control is sensitive to accurate wind speed inputs, while wake steering is sensitive to accurate wind direction inputs. Improved forecast performance on this timescale therefore also enhances the benefits of dynamic wind farm control.
 
-The field of individual turbine control (i.e. feed-forward and model predictive control) is largely irrelevant in the context of this project, as the timescales are in the order of seconds ahead where direct advection (frozen turbulence) models perform sufficiently well. There may be a case for individual turbine yaw control on the minute scale, however this is seen as a low priority application.
+The field of individual turbine control (i.e. feed-forward and model predictive control) is largely irrelevant in the context of this project, as the timescales are in the order of seconds ahead where direct advection (frozen turbulence) models perform sufficiently well. There may be a case for individual turbine yaw control on the minute scale, however this is seen as a low priority application with limited relative benefits over existing solutions.
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -162,25 +162,23 @@ Wind prediction is conducted on a wide range of time scales, with lead times spa
     \label{tab:forecast_overview_table}
 \end{table}
 
-Forecasting techniques can be categorized into two fundamental classes- physical and statistical approaches. Here general introductions are given for both.
+Forecasting techniques can be categorized into two fundamental classes- process driven physical models and data driven statistical approaches. Here general introductions are given for both. An extensive review is provided in Section \ref{sec:IEA_paper}.
 
-Physical approaches such as numerical weather prediction (NWP) are based on parameterizations of the atmosphere, where coarse input data (global or synoptic scale) is combined with mathematical modelling of atmospheric properties such as air, soil and sea temperature, pressure, land cover and surface obstacles to provide a local site forecast at varying temporal and spatial resolutions. Optionally, through data assimilation the model states can be iteratively adjusted using real-time observations to improve the simulation and correct for biases. These systems generally run on large supercomputers and require significant time and computational power to generate their forecasts. Further, they have not sufficiently demonstrated their ability to predict local microscale events that are of greatest relevance for real-time wind farm control. Therefore they are not considered appropriate in the context of minute-scale wind forecasting as they are ill-suited to be used operationally these time scales with today’s technology.
+Physical approaches such as numerical weather prediction (NWP) are based on well established physical and mathematical laws. Parameterizations of the atmosphere, where coarse input data (global or synoptic scale) is combined with mathematical modelling of atmospheric properties such as air, soil and sea temperature, pressure, land cover and surface obstacles to provide a local site forecast at varying temporal and spatial resolutions. Optionally, through data assimilation the model states can be iteratively adjusted using real-time observations to improve the simulation and correct for biases. These systems generally run on large supercomputers and require significant time and computational power to generate their forecasts. Further, they have not sufficiently demonstrated their ability to predict local microscale events that are of greatest relevance for real-time wind farm control. Therefore they are not considered appropriate in the context of minute-scale wind forecasting as they are ill-suited to be used operationally these time scales with today's technology.
 
-Statistical approaches 
+Statistical approaches use empirical methods to model relationships between historical observations. The models are then used with real-time inputs to extrapolate future outcomes. Meteorological data is normally given as a time-series, where samples are highly correlated, non-independent and naturally ordered in time. The high temporal autocorrelation of wind measurements lend themselves well to the simplest statistical approach called persistence. Persistence simply forecasts the future value of the series to be the same as the most recent observation, or a moving average of it. This method is widely used on horizons up to a few hours ahead, and is a common benchmark for evaluating more complex techniques. Autoregressive (AR) models are also appropriate, and are widely employed, often in conjunction with moving average (MA) models. In cases where the time-series is non-stationary, a number of transformation steps can be taken to impart stationarity (e.g. differencing, trend removal, seasonal and cyclical adjustments). Formulations which have demonstrated adept skill are autoregressive integrated moving average (ARIMA) models. Further details on ARIMA modelling are given in Section \ref{sec:lascar_paper}. 
+
+The flexibility of statistical approaches give promise for minute-scale forecasting
 
 
-Time-series meteorological data consists of individual samples which are highly correlated, non-independent and naturally ordered in time. This contrasts to cross-sectional analyses where samples are independent of each other and can be shuffled to improve model performance through tuning and cross-validation.
+
+
+\begin{comment}
 
 While a large volume of research work has been published on the short and long-term lead times, the prevailing lack of data access to high-frequency measurements along with a general incompatibility of grid and market support for implementing decision actions on minute timescales has led to a distinct gap in knowledge for forecasting within this category.
 
-%------------------------------------------------------------------------------
-TODO:
-\begin{itemize}
-\color{red}
-    \item Methods (statistical, physical)
-    \item Evaluating forecasts
-\end{itemize}
-
+Evaluating forecasts
+\end{comment}
 
 %--------------------------------------------------------------------------------
 \clearpage
