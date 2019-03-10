@@ -149,7 +149,7 @@ The field of individual turbine control (i.e. feed-forward and model predictive 
 \subsection{Forecasting for wind energy}
 \label{sec:intro_forecasting}
 
-The evolution of wind power together with advancements in computing and an improved understanding of atmospheric dynamics has established forecasting as a central element of operational research. An entire sub-industry is dedicated to developing and providing forecasting services to end users.
+The evolution of wind power together with advancements in computing and an improved understanding of atmospheric dynamics has established forecasting as a central element of operational research. An entire sub-industry is dedicated to developing and providing forecasting services to end users which include: wind farm owners and operators, power traders, asset managers, and transmission system operators (TSOs).
 
 Wind prediction is conducted on a wide range of time scales, with lead times spanning from a few milliseconds up to one week or more. Prediction intervals can be described by a few broad categories, each with their own approaches and applications. Table \ref{tab:forecast_overview_table} outlines the common forecast horizons relevant to wind energy and typical methods applied within them. Broad overviews of the field are also presented in \cite{costa_review_2008}, \cite{giebel_state---art_2011} and \cite{soman_review_2010}.
 
@@ -166,24 +166,34 @@ Forecasting techniques can be categorized into two fundamental classes- process 
 
 Physical approaches such as numerical weather prediction (NWP) are based on well established physical and mathematical laws. Parameterizations of the atmosphere, where coarse input data (global or synoptic scale) is combined with mathematical modelling of atmospheric properties such as air, soil and sea temperature, pressure, land cover and surface obstacles to provide a local site forecast at varying temporal and spatial resolutions. Optionally, through data assimilation the model states can be iteratively adjusted using real-time observations to improve the simulation and correct for biases. These systems generally run on large supercomputers and require significant time and computational power to generate their forecasts. Further, they have not sufficiently demonstrated their ability to predict local microscale events that are of greatest relevance for real-time wind farm control. Therefore they are not considered appropriate in the context of minute-scale wind forecasting as they are ill-suited to be used operationally these time scales with today's technology.
 
-Statistical approaches use empirical methods to model relationships between historical observations. The models are then used with real-time inputs to extrapolate future outcomes. Meteorological data is normally given as a time-series, where samples are highly correlated, non-independent and naturally ordered in time. The high temporal autocorrelation of wind measurements lend themselves well to the simplest statistical approach called persistence. Persistence simply forecasts the future value of the series to be the same as the most recent observation, or a moving average of it. This method is widely used on horizons up to a few hours ahead, and is a common benchmark for evaluating more complex techniques. Autoregressive (AR) models are also appropriate, and are widely employed, often in conjunction with moving average (MA) models. In cases where the time-series is non-stationary, a number of transformation steps can be taken to impart stationarity (e.g. differencing, trend removal, seasonal and cyclical adjustments). Formulations which have demonstrated adept skill are autoregressive integrated moving average (ARIMA) models. Further details on ARIMA modelling are given in Section \ref{sec:lascar_paper}. 
-
-The flexibility of statistical approaches give promise for minute-scale forecasting
-
-
-
+Statistical approaches use empirical methods to model relationships between historical observations. The models are then used with real-time inputs to extrapolate future outcomes. Meteorological data is normally given as a time-series, where samples are highly correlated, non-independent and naturally ordered in time. The high temporal autocorrelation of wind measurements lend themselves well to the simplest statistical approach called persistence. Persistence simply forecasts the future value of the series to be the same as the most recent observation, or a moving average of it. This method is widely used on horizons from the immediate to short-range, and is a common benchmark for evaluating more complex techniques. Autoregressive (AR) models are also appropriate, and are widely employed, often in conjunction with moving average (MA) models. In cases where the target signal is non-stationary, a number of transformation steps can be taken to impart stationarity (e.g. differencing, trend removal, seasonal and cyclical adjustments). Formulations which have demonstrated particularly adept skill are autoregressive integrated moving average (ARIMA) models. Further details on ARIMA modelling are given in Section \ref{sec:lascar_paper}. The flexibility of statistical approaches empower their suitability for minute-scale forecasting applications. This thesis work therefore exists within this research topic.
 
 \begin{comment}
-
-While a large volume of research work has been published on the short and long-term lead times, the prevailing lack of data access to high-frequency measurements along with a general incompatibility of grid and market support for implementing decision actions on minute timescales has led to a distinct gap in knowledge for forecasting within this category.
-
-Evaluating forecasts
+Evaluating forecasts?
 \end{comment}
 
 %--------------------------------------------------------------------------------
 \clearpage
 \subsection{Power system and electricity markets}
 \label{sec:intro_power_markets}
+
+The vast majority of wind power installations are grid connected and offer the sale of their production through either long term power purchase agreements (PPA) or via wholesale electricity markets.
+
+The modern electrical grid is a network of providers and consumers of electrical energy, interconnected via transmission and distribution lines traditionally used to transport supply from generation facilities to homes and businesses. Electrical appliances are designed to operate within a narrow range of the design frequency of the local AC power grid. Deviations can result in malfunctions or damage, or even in cascading failures as devices such as pumps, fans and motors drift from their intended output. For this reason, the supply and demand of electricity must be kept in constant balance. Variability 
+
+
+Because variability exists on both the supply and demand side, forecasts needed
+Deviations from forecasts require physical balancing
+Constraints in transmission
+
+
+
+
+
+
+The transmission capacity imposes constraints 
+synchronous electricity grid 
+
 
 TODO:
 \begin{comment}
@@ -278,6 +288,5 @@ TODO:
 %    \item Filtering techniques
 %    \item Interpreting measurements
 %\end{itemize}
-
 
 \clearpage
