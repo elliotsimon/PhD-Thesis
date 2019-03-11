@@ -183,28 +183,13 @@ The modern electrical grid is a network of providers and consumers of electrical
 
 Energy markets attempt to provide the optimum allocation of resources through the minimization of pricing while fulfilling balance constraints. This is enacted through an auction style clearing process, where utilities place bids to cover the forecasted demand of their customers, and generators place bids to offer their production into the market. The market price is then set at the intersection of the supply and demand offers, which is calculated for each region (i.e. zone or node). The market is subdivided geographically to account for constraints in transmission capacity, with import/export links considered. Once accepted, participants are balance responsible (BRP) for delivering their scheduled quota within the given trading block. If any deviations occur, they may incur financial penalties depending on the effect of their imbalance (i.e. helping or hurting the system). It is common for market operators (e.g. in NordPool's two-price system) to discourage gaming tactics by preventing revenues from exceeding initial market payouts through exploiting up- and down-regulation price movements.
 
-Market design is highly dependent on location, but common 
+Market design is highly dependent on location, but exchanges often operate day-ahead and intraday markets with trading segments in one hour blocks, and with long lead times between bid placement and delivery. These lengthy intervals create issues for variable renewables such as wind. Market operators in regions with high penetrations of renewables are moving to shorten these horizons, in certain cases to continuous intraday markets with 5, 15, and 30 minute contracts (\cite{epex_spot_se_continuous_2019}, \cite{aemc_five_2017}) where minute-scale wind forecasts become relevant and necessary for traders.
 
-
-
-
-
-Deviations from forecasts require physical balancing
-
-TODO:
 \begin{comment}
-Physical balancing
-Intrahour market trading
 Errors in power forecast do not necessarily reflect impact. Overestimation and underproduction != underprediction and overproduction due to structure of balancing market.
 The need for spinning reserves. Frequency control/response mode. Droop speed control. Spinning reserve is extremely expensive for utilities. 
 https://en.wikipedia.org/wiki/Dynamic_demand_(electric_power)#The_need_for_spinning_reserve
 Cost of imbalance not only money but also CO2
-
-
-•	Errors in power forecast do not necessarily reflect impact. Overestimation and underproduction != under prediction and overproduction due to structure of balancing market.
-•	The need for spinning reserves. Frequency control/response mode. Droop speed control. Spinning reserve is extremely expensive for utilities. 
-•	https://en.wikipedia.org/wiki/Dynamic_demand_(electric_power)#The_need_for_spinning_reserve
-•	Cost of imbalance not only money but also CO2
 \end{comment}
 
 %--------------------------------------------------------------------------------
