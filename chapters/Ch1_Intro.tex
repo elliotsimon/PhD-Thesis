@@ -203,51 +203,86 @@ Cost of imbalance not only money but also CO2
 %--------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------
 \clearpage
-\section{Remote sensing}
+\section{Remote sensing of winds}
 \label{intro_remote_sensing}
 
+For centuries wind measurements in the atmospheric boundary layer (ABL) have been performed using a variety of in situ techniques, where instruments including cup anemometers and wind vanes are mounted on towers to measure the local flow at the sensor's position. These methods are often employed within wind energy for resource assessment and site suitability studies, and for turbine power performance testing.
+
+The increasing scale of modern wind turbines (e.g. the 9.5 MW Vestas V164 and GE's upcoming 12 MW Haliade-X) has resulted in rotor tip heights approaching 300 m, which represents both a financial and technical challenge when relying on mast based measurements, particularly in offshore environments.
+
+Remote sensing (RS) is a measurement process in which observations are made at a distance (i.e. without being physically present at the target position). This provides a number of advantages in the flexibility and cost of running a measurement campaign, and in enabling new ways to measure.
+
+For performing wind measurements, active RS devices are designed to utilize the Doppler effect to obtain velocity information. This is done by emitting an electromagnetic wave of a known frequency which backscatters off of objects within the measurement volume and is received again by the telescope. The returned signal is analyzed (either directly or using coherent detection methods) and the radial velocity is determined through its proportionality to the frequency shift (Eq. \ref{eq:doppler_shift}) using spectral estimation. The obtained radial velocity represents the wind velocity projected along the beam's path (line of sight, LOS). In the case of atmospheric measurements, the target objects are aerosols- particles such as dust, water vapor, and particulate matter (pollutants) which are suspended in the air and are assumed to be moving together with the wind.
+
+\begin{equation}
+    \centering
+        \Delta f=2 \frac{u_{r}}{c}
+    \label{eq:doppler_shift}
+\end{equation}
+\noindent
+where $\Delta f$ is the Doppler shift, $u_r$ is the radial wind speed, and $c$ is the speed of light.
+
+RS devices represent a wide class of technologies such as Doppler radar, Doppler sodar, and Doppler lidar which can be ground based, nacelle mounted, on fixed or floating platforms, or on space-borne satellites. Each tool has its own advantages and disadvantages. In this thesis we will focus solely on Doppler wind lidar systems.
+
 %--------------------------------------------------------------------------------
-\subsection{Principles}
-\label{sec:intro_rs_principles}
-
-TODO:
-\begin{itemize}
-\color{red}
-    \item Intro
-    \item Measurement theory
-    \item Introduce lidar and radar
-\end{itemize}
-
-
+%\subsection{Principles}
+%\label{sec:intro_rs_principles}
 %--------------------------------------------------------------------------------
 \clearpage
-\subsection{Lidar}
+%\subsection{Pulsed coherent Doppler lidar}
+\subsection{Doppler wind lidars}
 \label{sec:intro_lidar}
 
-TODO:
-\begin{itemize}
-\color{red}
-    \item Lidar specific 
-    \item Pulsed Doppler lidar measurement chain
-    \item Practicalities
-    \item Filtering techniques
-    \item Interpreting measurements
-\end{itemize}
+Doppler wind lidars are active remote sensing instruments which use laser light in the near-infrared band as their medium. The laser source most often being a 1.5 $\mu$\\m all-fiber laser, which corresponds to the spectral absorption line of atmospheric water vapor and carbon dioxide while also satisfying eye safety requirements (\cite{cariou_laser_2006}). An added benefit is that this application overlaps with fiber optic components used in the telecommunications industry. This has resulted in affordable and widely available hardware options for manufacturing the lidar's optical systems.
 
+Doppler wind lidars are built commercially in a variety of configurations depending on the mounting location and measurement setup. The simplest systems having fixed telescopes which stare or switch between predetermined beam positions and are commonly used in nacelle lidars. Units with a rotating platform and offset mirror perform repeating conical scans along a fixed path and are commonly used in certain lidar wind profilers. Scanning lidars are equipped with a dual-axis scanner head which allows the beam to be pointed arbitrarily in space, with little restrictions on the path, timing, and geometric complexity of the scanning trajectory. Fig. \ref{fig:lidars} presents a look at some of the most common commercially available lidar systems.
+
+\begin{figure}[htbp]
+    \centering
+        \includegraphics[width=1.0\textwidth]{graphics/intro/lidars.png}
+    \caption{Selection of commercially available lidar systems, grouped by main function. Images sourced from the manufacturer's respective product brochures}
+    \label{fig:lidars}
+\end{figure}
+
+Two main diverging classes of lidar technology exists- pulsed and continuous-wave (CW) systems, which differ greatly in their spatial and temporal resolutions. CW lidars emit a continuous focused beam, which must be re-focused for different measurement ranges. The probe volume of a CW lidar is directed by the aperture of the telescope, which results in an increase in the spatial resolution as a function of range by the power of four. This illustrates that CW lidar technology is only suitable for close ranges, up to a few hundred meters away. In contrast, pulsed lidars emit a collimated beam using a series of short pulses on the order of nanoseconds. This allows all distances along a pulsed lidar's laser path to be measured at once, using time-of-flight calculations to discern the appropriate distances into range gates (RG) without any change in spatial resolution with distance. Coherent pulsed Doppler lidars equipped with high powered optical amplifiers are capable of measuring up to 30 km, although compact units are usually limited to between 5-12 km. For these reasons, pulsed lidar variants show the most promise in terms of suitability towards applications which cover large spatial scales, including minute-scale forecasting.
+
+\begin{comment}
+Pulsed Doppler lidar measurement chain
+Practicalities
+\end{comment}
 
 %--------------------------------------------------------------------------------
 \clearpage
 \subsection{Measurement techniques}
 \label{sec:intro_meas_tech}
 
-TODO:
+As introduced in Section \ref{sec:intro_lidar}, application specific lidar systems normally follow preset scanning strategies, while scanning lidars allow for more complex measurement techniques. A brief synopsis of available measurement configurations for a coherent pulsed scanning Doppler lidar is given in the following: 
+
 \begin{itemize}
-\color{red}
-    \item Beam positioning
-    \item Switching vs. mechanical
-    \item Staring vs. 2D vs. 3D
-    \item Fixed vs dynamic trajectories
+\item LOS (staring mode) --- The beam position remains fixed and measurements are acquired continuously at the target point.
+
+\item DBS (Doppler beam swing) --- A technique used to measure vertical wind profiles by measuring at typically four orthogonal positions around a cone and optionally including a fifth central beam to directly measure the vertical wind component. The conical radial speed observations exhibit a cosine function. Fitting techniques are then used to produce estimates of the wind vector components by assuming the wind is frozen and horizontally homogeneous between the discrete sampling points.
+
+\item VAD (velocity azimuth display) --- Also used primarily for vertical wind profiling, but in certain cases is rotated for horizontal use. The elevation angle is held constant while sweeping across the full range of azimuths. This performs a full conical scan which can be fit similarly to the DBS technique.
+
+\item PPI (plan position indicator) --- Closely related to the VAD method, PPI scans use fixed, low (or flat) elevation angles and sweep across a full or partial range of azimuths. This results in conical arc slices over a large horizontal distance. The radial speed signals similarly follow a cosine function, with the peak and trough corresponding to the azimuth position aligned into and away from the wind direction. When the beam is perpendicular to the wind, the observed radial speed is zero. PPI scans produce cross-sections of the horizontal wind structure and are processed using retrieval or fitting methods by assuming horizontal homogeneity and by not taking vertical effects into account.
+
+\item RHI (range height indicator) --- The counterpart to PPI scanning, RHI scans vary the elevation axis while keeping the azimuth fixed. This produces cross-sections of the vertical wind structure along an arc.
+
+\item User defined --- Complex trajectories which are custom tailored for the particular application are also possible. An example of this is the ridge transect scan used in the Perdig\~ao field campaign which follows the site's topography along a fixed height (\cite{robert_menke_perdigao_2017}).
+
+\item Dual and triple Doppler --- Beams from multiple separated lidars can be intersected in space (and ideally time) to measure either two or all three of the wind velocity components with any of the above-mentioned scan patterns. The independent measurements are then combined together when performing the wind field reconstruction. Dual Doppler approaches have shown to slightly improve wind retrieval results in simple terrain compared to single Doppler techniques (\cite{simon_comparison_2016}, \cite{floors_report_2016}), while forgoing the assumption of horizontal homogeneity. However, this advantage is offset by the increased cost of the additional systems and reliance on data availability with all systems.
+
+\item Dynamic --- The previously described scan types are normally configured in advance and set to repeat continuously, or to cycle through a predetermined set of scans along a schedule. Dynamic scanning adapts the lidar's trajectory to real-time inputs, chiefly those derived from the measurements themselves such as wind speed and direction. An example includes \cite{wildmann_wind_2018} which adjusts parameters of the scan to follow the downstream turbine wake through changes in the wind direction.
+
 \end{itemize}
+
+These scanning strategies can be configured and combined to suit the measurement objective and take site-specific particularities into account.
+
+
+\begin{comment}
+Filtering techniques
+\end{comment}
 
 %--------------------------------------------------------------------------------
 %\clearpage
