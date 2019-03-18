@@ -118,7 +118,7 @@ This is further shown in Figure \ref{fig:norm_act_pow_error_dist}, where the dis
     \label{fig:norm_act_pow_error_dist}
 \end{figure}
 
-This simplified investigation has considered a single wind turbine and not collective wind farm output or otherwise geographically distributed generation which will act to some degree as a smoothing filter. Having said that, the case study has demonstrated that minute-scale variability of wind power is not insignificant and attention should also be focused on this timescale alongside the more commonly focused periods (e.g. 1-hour).
+This simplified investigation has considered a single wind turbine and not collective wind farm output or otherwise geographically distributed generation which will act to some degree as a smoothing filter. Having said that, the case study has demonstrated that minute-scale variability of wind power is not insignificant and attention should also be focused on this timescale alongside the more commonly focused periods (e.g. 10-minutes and 1-hour).
 
 %--------------------------------------------------------------------------------
 \clearpage
@@ -129,7 +129,7 @@ Utility scale wind power installations consist of multi-turbine arrangements kno
 
 Modern wind turbines are designed with control systems which act to optimize their performance from an individual perspective. However, all together this greedy approach does not always result in the best coordination of the wind farm as a whole. The field of wind farm control aims to collectively optimize the power and loads of the entire wind farm in a collaborative manner by orchestrating control over each turbine's set-points. The overall objectives being to either maximize total active power or provide power control by following a reference signal, and to minimize fatigue loads (\cite{knudsen_survey_2015}). The two main mechanisms for dynamic wind farm control are induction control and wake steering.
 
-Axial induction control reduces the velocity deficit of the downstream wake leading to larger amounts of recoverable energy available to downstream turbines. A wind turbine's power coefficient at its maximum operating point is much less sensitive to changes in pitch angle than its thrust coefficient (\cite{annoni_analysis_2016}). Exploiting this relationship allows for small decreases in the upstream turbine's production to be more than made up for by increased production at the downstream turbines. This is accomplished by slightly pitching the rotor outwards (towards feathered position) and adjusting the generator torque which results in a decrease in the power and thrust coefficients and a reduction in the tip speed ratio. Normally this is performed by reducing the active power of the turbine (downrating), instead of manually interfacing with the turbine's pitch and torque set-points. \cite{gebraad_maximum_2015} establishes a 1.36\% improvement in annual energy production (AEP) using dynamic induction control simulations at the Princess Amalia Wind Farm in the Netherlands.
+Axial induction control reduces the velocity deficit of the downstream wake leading to larger amounts of recoverable energy available to downstream turbines. A wind turbine's power coefficient at its maximum operating point is much less sensitive to changes in pitch angle than its thrust coefficient (\cite{annoni_analysis_2016}). Exploiting this relationship allows for small decreases in the upstream turbine's production to be more than made up for by increased production at the downstream turbines. This is accomplished by slightly pitching the rotor outwards (towards feathered position) and adjusting the generator torque which results in a decrease in the power and thrust coefficients and a reduction in the tip speed ratio. Normally this is performed by reducing the active power of the turbine (downrating), instead of manually interfacing with the turbine's pitch and torque set-points. \cite{gebraad_maximum_2015} establishes a 1.36\% improvement in annual energy production (AEP) using dynamic induction control simulations at the Princess Amalia Wind Farm in the Netherlands. Induction control using static set-point optimization has demonstrated far less promise, with no net increase in wind farm efficiency during wind tunnel testing (\cite{bartl_experimental_2016}).
 
 Wake steering is the intentional misalignment of an upstream turbine's rotor in order to redirect (steer) the wake away from downstream turbines. During normal operation, the turbine will orient its rotor perpendicularly to the wind direction. Applying wake redirection causes the turbine's yaw motor to re-orient itself to an angle relative to the wind direction (Fig. \ref{fig:wake_steering}). This causes the wake to deflect away from downwind turbines, leading to a net increase in energy production for the overall wind farm. Positive yaw misalignment angles are normally used, as this results in a positive tilt angle which also directs the wake downwards. Simulations have indicated the potential for power gains using this approach while also avoiding significant load repercussions. The gains in AEP are on the order of 5\% through the reduction of wake losses (\cite{knudsen_survey_2015}, \cite{gebraad_maximization_2017}). The concept has been successfully demonstrated in a recent field trial (\cite{fleming_field_2017}) which confirms the simulation estimates.
 
@@ -212,17 +212,25 @@ The increasing scale of modern wind turbines (e.g. the 9.5 MW Vestas V164 and GE
 
 Remote sensing (RS) is a measurement process in which observations are made at a distance (i.e. without being physically present at the target position). This provides a number of advantages in the flexibility and cost of running a measurement campaign, and in enabling new ways to measure.
 
-For performing wind measurements, active RS devices are designed to utilize the Doppler effect to obtain velocity information. This is done by emitting an electromagnetic wave of a known frequency which backscatters off of objects within the measurement volume and is received again by the telescope. The returned signal is analyzed (either directly or using coherent detection methods) and the radial velocity is determined through its proportionality to the frequency shift (Eq. \ref{eq:doppler_shift}) using spectral estimation. The obtained radial velocity represents the wind velocity projected along the beam's path (line of sight, LOS). In the case of atmospheric measurements, the target objects are aerosols- particles such as dust, water vapor, and particulate matter (pollutants) which are suspended in the air and are assumed to be moving together with the wind.
+For performing wind measurements, active RS devices are designed to utilize the Doppler effect to obtain velocity information. This is done by emitting an electromagnetic or sound wave of a known frequency which backscatters off of objects within the measurement volume and is acquired again by the receiver (e.g. telescope, parabolic dish, microphone). The returned signal is analyzed (either directly or using coherent detection methods) and the radial velocity is determined through its proportionality to the frequency shift using spectral estimation. The obtained radial velocity represents the wind velocity projected along the beam's path (line of sight, LOS). In the case of atmospheric measurements, the target objects are aerosols- particles such as dust, water vapor, and particulate matter (pollutants) which are suspended in the air and are assumed to be moving together with the wind.
 
-\begin{equation}
-    \centering
-        \Delta f=2 \frac{u_{r}}{c}
-    \label{eq:doppler_shift}
-\end{equation}
-\noindent
-where $\Delta f$ is the Doppler shift, $u_r$ is the radial wind speed, and $c$ is the speed of light.
+% (Eq. \ref{eq:doppler_shift})
+%\begin{equation}
+%    \centering
+%        \Delta f=2 \frac{u_{r}}{c}
+%    \label{eq:doppler_shift}
+%\end{equation}
+%\noindent
+%where $\Delta f$ is the Doppler shift, $u_r$ is the radial wind speed, and $c$ is the speed of light.
 
-RS devices represent a wide class of technologies such as Doppler radar, Doppler sodar, and Doppler lidar which can be ground based, nacelle mounted, on fixed or floating platforms, or on space-borne satellites. Each tool has its own advantages and disadvantages. In this thesis we will focus solely on Doppler wind lidar systems.
+Relevant RS devices represent a wide class of technologies such as Doppler radar, Doppler sodar, and Doppler lidar which can be ground based, nacelle mounted, on fixed or floating platforms, or on space-borne satellites. Each tool has its own advantages and disadvantages. Operational pulse Doppler radar systems typically have large antennas and high powered transmitters which enable them to measure at far distances (e.g. up to 300 km for S-band Nexrad systems in the US). However, they require precipitation for backscatter signal and the range resolution is insufficient for detecting small scale motion, especially at further distances. Ka-band Doppler radars have been recently introduced which are more compact and are able to measure in clear air up to 30 km (\cite{hirth_measuring_2012}). 
+
+
+Space born systems including synthetic aperture radars and the recently launched ALADIN lidar profiler on ESA's ADM-Aeolus satellite offer global coverage at the expense of spatial and temporal resolution.
+
+
+
+In this thesis we will focus solely on Doppler wind lidar systems due to their compact size and...
 
 %--------------------------------------------------------------------------------
 %\subsection{Principles}
@@ -277,7 +285,7 @@ As introduced in Section \ref{sec:intro_lidar}, application specific lidar syste
 
 \end{itemize}
 
-These scanning strategies can be configured and combined to suit the measurement objective and take site-specific particularities into account.
+These scanning strategies can be configured and combined to suit the measurement objective and take site-specific particularities into account. This allows for ultimate flexibility in the placement of devices, measurement range and spatial resolution, sampling rate of the data, and spatial 
 
 
 \begin{comment}
