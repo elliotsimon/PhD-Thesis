@@ -38,11 +38,13 @@ While wind power only supplies about 4\% of global electricity demand at present
 
 The reliable and efficient exploitation of wind power faces a unique set of challenges. Electrical energy produced by wind turbines is derived from the kinetic energy of the wind. Air flow generates a lift force on the blades causing them to rotate. This mechanical energy ultimately drives the generator, producing electricity which is collected and fed to the power grid. As the wind is not a controllable fuel source, the turbine's output will to a large extent be determined by atmospheric conditions.
 
-Winds originate from differential heating of the Earth's surface and are transported by bulk motion. Within the boundary layer, they are largely influenced by the planet's surface (terrain and vegetation), human made obstacles, weather systems, and turbulent mixing.
+Winds originate from differential heating of the Earth's surface and are transported by bulk motion. Within the boundary layer, they are largely influenced by the planet's surface (terrain and vegetation), human made obstacles, weather systems, and turbulent mixing. 
+%The wind consists of a mean dominant force in addition to irregular fluctuations (turbulence).
+%varying levels of turbulence 
+%turbulent kinetic energy (TKE) driven by atmospheric stability
+% other interactions such as with thermal convective up/downdrafts and turbulent eddies
 
-Wind variability is defined as the fluctuations in energy content of the wind. These variations occur across a wide range of temporal and spatial scales. Contributions can include diurnal, seasonal, and interannual patterns, and physical processes including: gravity waves, cold fronts, storms, cellular convection, convective rolls, low level jets, and sea breezes (\cite{vincent_forecasting_2017}). Combinations of these synoptic-, meso- and micro-scale influences lead to a high degree of intermittency in the wind, as shown in Figure \ref{fig:wind_speed_power_ts} using 1-second measurements.
-
-Analysis of the power spectral density (PSD) demonstrates the distribution of energies which contribute to the signal variability by frequency. An example is shown in Figure \ref{fig:wind_speed_power_psd} using the same high-frequency meteorological and turbine data. The results are obtained using Welch's method (\cite{welch_use_1967}) with Hamming windowing to reduce noise in the spectra.
+Wind variability is defined as the fluctuations in energy content of the wind. These variations occur across a wide range of temporal and spatial scales. Contributions can include diurnal, seasonal, and interannual patterns, and physical processes including: gravity waves, cold fronts, storms, cellular convection, convective rolls, low level jets, and sea breezes (\cite{vincent_forecasting_2017}). Combinations of these synoptic-, meso- and micro-scale influences lead to a high degree of intermittency in the wind, as shown in Figure \ref{fig:wind_speed_power_ts} using measurements shown with a sampling rate of 1-second.
 
 \begin{figure}[htbp]
     \centering
@@ -51,6 +53,10 @@ Analysis of the power spectral density (PSD) demonstrates the distribution of en
     \label{fig:wind_speed_power_ts}
 \end{figure}
 
+Because the amount of extractable power from the wind is proportional to the cube of the wind velocity, relatively small differences in wind conditions can result in large deviations in power output. Wind ramps, or large and sudden changes in a turbine or wind farm's output are notoriously difficult to forecast (both the scale and timing) and can cause (in the best case) energy to be wasted (through curtailment during up-ramps), or in the worst case system-level shortages (during down-ramps). To prevent these possible shortages during periods of expected variability, reserve wind power can be secured through down-regulation (curtailment) which is then available for activation through flexible dispatch mechanisms.
+
+Power spectral density (PSD) plots illustrate the distribution of energies which contribute to the signal's variability, ordered by frequency. An example is shown in Figure \ref{fig:wind_speed_power_psd} for wind speed and active power from a wind turbine using the same high-frequency dataset. This was obtained using Welch's method (\cite{welch_use_1967}) with Hamming windowing to reduce noise in the spectra. The trends indicate that the variability decreases with decreasing time-scales in both cases.
+
 \begin{figure}[htbp]
     \centering
         \includegraphics[width=1.0\textwidth]{graphics/intro/variability/wind_speed_power_psd.pdf}
@@ -58,29 +64,21 @@ Analysis of the power spectral density (PSD) demonstrates the distribution of en
     \label{fig:wind_speed_power_psd}
 \end{figure}
 
-%\cite{larsen_full_scale_2016} 
+Without system level storage, wind power variability is mostly addressed by spatial smoothing. Averaging occurs firstly on the turbine level, where the fastest (millisecond-second scale) fluctuations are to a large extent compensated for by the inertia and swept area averaging of the wind turbine's rotor. Although individual turbine outputs within a wind farm are strongly correlated, their collective power output is smoothed on the second-minute scale by the aggregation effect. Most substantially, entire wind farms dispersed over large areas provide the largest impact towards reducing variability across all time scales due the low correlation of production between sites operating across different weather and geographic contexts. 
 
-%The variability of the wind 
-%Winds consist of a dominant wind force but also irregular fluctuations (turbulence)
-%varying levels of turbulence 
-%turbulent kinetic energy (TKE) driven by atmospheric stability
-% other interactions such as with thermal convective up/downdrafts and turbulent eddies
-%Wind motion exists Global atmospheric circulation originates from differential heating of the Earth's poles and equator which is rotated by the Coriolis force due to the planet's spin. Large scale circulation cells 
-%Winds are characterized by their velocity (speed and direction) and 
+\begin{comment}
+The variability decreases as geographic area increases
+Variability higher offshore
 
-TODO:
-\begin{itemize}
-\color{red}
-    \item scales, turbulence etc.
-    \item power curve
-    \item wind ramps
-    \item averaging over rotor area and wind farm area (though highly correlated)
-    \item the most rapid variations will to some extent be compensated for by the inertia of the wind turbine rotor.
-    \item large number of turbines are usually installed within a small geographical area, leading to correlated fluctuations between many turbines
-    \item flexible dispatch, higher predicted variability -> more reserve wind power (curtailment)
-    \item balancing in high penetration
-    \item there are ideas for storage but none implemented at large scale at this time
-\end{itemize}
+\cite{larsen_full_scale_2016} 
+Wind motion exists Global atmospheric circulation originates from differential heating of the Earth's poles and equator which is rotated by the Coriolis force due to the planet's spin. Large scale circulation cells 
+scales, turbulence etc.
+large number of turbines are usually installed within a small geographical area, leading to correlated fluctuations between many turbines
+    
+balancing in high penetration
+there are ideas for storage but none implemented at large scale at this time
+real time balancing
+\end{comment}
 
 %--------------------------------------------------------------------------------
 \clearpage
